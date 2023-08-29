@@ -7,7 +7,7 @@
 ## Run
 
 ```bash
-nx generate @frontend/migration-kit:check-webpack-config
+nx generate @nx-validators/migration-kit:check-webpack-config
 ```
 
 ## Solutions

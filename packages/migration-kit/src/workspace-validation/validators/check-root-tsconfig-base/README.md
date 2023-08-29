@@ -7,10 +7,10 @@ The goal of that validator is to check that the main typescript configurations i
 ## Run
 
 ```bash
-nx generate @frontend/migration-kit:check-root-tsconfig-base
+nx generate @nx-validators/migration-kit:check-root-tsconfig-base
 ```
 
 ## Solutions
 * Check that `tsconfig.base.json` exists
-* Align `tsconfig.base.json` located at the root of your repository with the [main configuration](`https://vie.git.bwinparty.com/vanilla/vanilla/-/blob/master/tsconfig.base.json`)
+* Align `tsconfig.base.json` located at the root of your repository with the [main configuration](`/blob/master/tsconfig.base.json`)
 

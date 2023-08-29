@@ -112,7 +112,7 @@ async function selectValidations(
     ).map(([validationId, { name, validatorIds }]) => {
       const validatorCommands = validatorIds.map(
         (validatorId) =>
-          `\n      -> nx g @frontend/migration-kit:${validatorId}`
+          `\n      -> nx g @nx-validators/migration-kit:${validatorId}`
       );
       return {
         name: `${name}${validatorCommands}`,

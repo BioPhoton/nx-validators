@@ -6,7 +6,7 @@ This validator checks that everything that could be considered as a Nx project s
 
 ## Run
 ```bash
-nx generate @frontend/migration-kit:use-project-json
+nx generate @nx-validators/migration-kit:use-project-json
 ```
 
 ## Solution

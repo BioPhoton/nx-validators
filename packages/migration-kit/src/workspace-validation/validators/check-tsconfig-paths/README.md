@@ -8,7 +8,7 @@ It checks also if nested typescript configuration are not declaring paths. In fa
 ## Run
 
 ```bash
-nx generate @frontend/migration-kit:check-tsconfig-paths
+nx generate @nx-validators/migration-kit:check-tsconfig-paths
 ```
 
 ## Solution

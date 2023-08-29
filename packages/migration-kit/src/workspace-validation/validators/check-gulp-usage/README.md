@@ -7,7 +7,7 @@ In a Nx architecture, Gulp is not needed anymore because [Nx Tasks](https://nx.d
 ## Run
 
 ```bash
-nx generate @frontend/migration-kit:check-gulp-usage
+nx generate @nx-validators/migration-kit:check-gulp-usage
 ```
 
 ## Solutions

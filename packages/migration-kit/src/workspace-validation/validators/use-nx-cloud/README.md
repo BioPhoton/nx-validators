@@ -7,7 +7,7 @@ This validator checks that the workspace is using Nx Cloud.
 
 ## Run
 ```bash
-nx generate @frontend/migration-kit:use-nx-cloud
+nx generate @nx-validators/migration-kit:use-nx-cloud
 ```
 
 ## Solution
