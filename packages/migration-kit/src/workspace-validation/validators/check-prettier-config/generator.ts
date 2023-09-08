@@ -18,7 +18,7 @@ const checkPrettierDevkitConfig = (tree: Tree): DataLog => {
       'Prettier Config is extending the shared config from @nx-validators/dev-kit',
     status: prettierConfig.includes('dev-kit/src/prettier/index')
       ? 'success'
-      : 'failed',
+      : 'error',
   };
 };
 

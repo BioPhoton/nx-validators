@@ -144,7 +144,7 @@ describe('Validate Workspace Generator', () => {
             // GIVEN
             jest.mock(
                 '../validators/generator-id-failed/generator',
-                () => ({ default: jest.fn().mockResolvedValue([{ status: 'failed' }, { status: 'success' }]) }),
+                () => ({ default: jest.fn().mockResolvedValue([{ status: 'error' }, { status: 'success' }]) }),
                 {
                     virtual: true,
                 },
@@ -173,8 +173,8 @@ describe('Validate Workspace Generator', () => {
                 expect(createWorkspaceValidationResultSpy).toHaveBeenCalledWith(workspaceValidations);
 
                 expect(updateValidatorResultSpy).toHaveBeenCalledWith(expect.any(Object), 'validation-one', `generator-id-failed`, {
-                    status: 'failed',
-                    data: [{ status: 'failed' }, { status: 'success' }],
+                    status: 'error',
+                    data: [{ status: 'error' }, { status: 'success' }],
                 });
 
                 expect(updateValidatorResultSpy).toHaveBeenCalledWith(expect.any(Object), 'validation-one', `generator-id-success`, {

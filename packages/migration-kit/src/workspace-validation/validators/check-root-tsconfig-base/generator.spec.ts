@@ -22,7 +22,7 @@ describe('Check-root-tsconfig-base generator test set', () => {
         const data = await checkRootTsConfigBaseGenerator(tree);
 
         // EXPECT
-        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'failed' });
+        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'error' });
     });
 
     it('should have a tsconfig.base.json configuration', async () => {
@@ -46,7 +46,7 @@ describe('Check-root-tsconfig-base generator test set', () => {
         // EXPECT
         expect(data).toContainEqual({
             expected: `Configurations in file "${TS_CONFIG_BASE_FILE}" are matching the monorepo configurations`,
-            status: 'failed',
+            status: 'error',
         });
     });
 

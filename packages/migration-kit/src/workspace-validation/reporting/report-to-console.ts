@@ -37,14 +37,14 @@ const configMap: Record<ResultStatus, LogConfig> = {
         labelBackgroundColor: SUCCESS_BG_COLOR,
         icon: SUCCESS_ICON,
     },
-    failed: {
+    error: {
         messageColor: FAILURE_FG_COLOR,
         label: 'FAILED',
         labelBackgroundColor: FAILURE_BG_COLOR,
         icon: FAILURE_ICON,
     },
-    skip: {
-        label: 'SKIP',
+    info: {
+        label: 'INFO',
         labelBackgroundColor: SKIP_BG_COLOR,
         labelTextColor: BLACK_COLOR,
     },
@@ -71,7 +71,7 @@ export default function reportToConsole({ validationResults }: WorkspaceValidati
                     console.log(FAILURE_FG_COLOR, TAB + TAB + logWithIndent, DEFAULT_COLOR);
                 }
             });
-            if (validatorStatus === 'failed') {
+            if (validatorStatus === 'error') {
                 // log documentation link
                 console.log(FAILURE_FG_COLOR, TAB + 'Please see the docs to fix the failed validator: \n', TAB + documentation, DEFAULT_COLOR, '\n');
             }

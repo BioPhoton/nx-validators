@@ -12,13 +12,13 @@ describe('Check-version-mismatch generator test set', () => {
     it('should detect missing project.json file if there is a package.json', async () => {
         tree.write('/libs/feature/package.json', '');
         const data = await useProjectJson(tree);
-        expect(data).toContainEqual({ expected: `The configuration file /libs/feature/project.json exists.`, status: 'failed' });
+        expect(data).toContainEqual({ expected: `The configuration file /libs/feature/project.json exists.`, status: 'error' });
     });
 
     it('should detect missing project.json file if there is a tsconfig.json', async () => {
         tree.write('/libs/feature/tsconfig.json', '');
         const data = await useProjectJson(tree);
-        expect(data).toContainEqual({ expected: `The configuration file /libs/feature/project.json exists.`, status: 'failed' });
+        expect(data).toContainEqual({ expected: `The configuration file /libs/feature/project.json exists.`, status: 'error' });
     });
 
     it('should find project.json file if there is a package.json', async () => {

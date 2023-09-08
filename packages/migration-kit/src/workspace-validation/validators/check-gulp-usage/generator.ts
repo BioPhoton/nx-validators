@@ -13,7 +13,7 @@ export async function checkGulpUsageGenerator(tree: Tree): Promise<DataLog[]> {
         const gulpTasks = execSync('yarn gulp --tasks-simple', { stdio: 'pipe' }).toString();
         data.push({
             expected: 'Gulp tasks should not exist.',
-            status: gulpTasks != null ? 'failed' : 'success',
+            status: gulpTasks != null ? 'error' : 'success',
             ...(gulpTasks != null ? { log: `The following gulp tasks were found: ${gulpTasks}.` } : {}),
         });
     } catch (e) {

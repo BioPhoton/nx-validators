@@ -90,7 +90,7 @@ function isConfigAligned(tree: Tree, expectedOverrides: ConfigOverride[]): DataL
                       status: 'success',
                   }
                 : {
-                      status: 'failed',
+                      status: 'error',
                       log: `Following overrides (rules, and extends) are missing in your eslint config:\n ${JSON.stringify(diff, null, '  ')}`,
                   }),
         },

@@ -26,7 +26,7 @@ export async function checkRootTsConfigBaseGenerator(
         withoutPaths(monorepoTsConfigBase)
       )
         ? 'success'
-        : 'failed',
+        : 'error',
     });
   }
 

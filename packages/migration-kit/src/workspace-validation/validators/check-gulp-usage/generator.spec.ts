@@ -21,7 +21,7 @@ describe('check-gulp-usage generator', () => {
     it('should finish up with failed status because gulp dependency exists', async () => {
         tree.write('package.json', JSON.stringify({ devDependencies: { gulp: '1.2.3' } }));
         const data = await checkGulpUsageGenerator(tree);
-        expect(data).toContainEqual({ expected: 'There is no gulp-like dependency installed.', status: 'failed' });
+        expect(data).toContainEqual({ expected: 'There is no gulp-like dependency installed.', status: 'error' });
         expect(data).toContainEqual({ expected: 'Gulp tasks should not exist.', status: 'success' });
     });
 
@@ -32,7 +32,7 @@ describe('check-gulp-usage generator', () => {
         expect(data).toContainEqual({ expected: 'There is no gulp-like dependency installed.', status: 'success' });
         expect(data).toContainEqual({
             expected: 'Gulp tasks should not exist.',
-            status: 'failed',
+            status: 'error',
             log: 'The following gulp tasks were found: build.',
         });
     });

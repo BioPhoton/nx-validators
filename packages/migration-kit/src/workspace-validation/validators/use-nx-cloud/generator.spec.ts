@@ -12,14 +12,14 @@ describe(useNxCloud, () => {
     it('should check if nx-cloud is installed', async () => {
         tree.write('package.json', `{ "devDependencies": {} }`);
         const data = await useNxCloud(tree);
-        expect(data).toContainEqual({ expected: 'Package nx-cloud is installed.', status: 'failed' });
+        expect(data).toContainEqual({ expected: 'Package nx-cloud is installed.', status: 'error' });
     });
 
     it('should check if nx.json is present', async () => {
         tree.write('package.json', `{ "devDependencies": {} }`);
         tree.delete('nx.json');
         const data = await useNxCloud(tree);
-        expect(data).toContainEqual({ expected: 'The configuration file nx.json exists.', status: 'failed' });
+        expect(data).toContainEqual({ expected: 'The configuration file nx.json exists.', status: 'error' });
     });
 
     it("should fail if the default task runner isn't nx-cloud", async () => {
@@ -35,7 +35,7 @@ describe(useNxCloud, () => {
             } satisfies NxJsonConfiguration),
         );
         const data = await useNxCloud(tree);
-        expect(data).toContainEqual({ expected: 'The default task runner should use nx-cloud', status: 'failed' });
+        expect(data).toContainEqual({ expected: 'The default task runner should use nx-cloud', status: 'error' });
     });
 
     it('should success if the default task runner is nx-cloud', async () => {

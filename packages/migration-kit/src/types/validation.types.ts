@@ -13,7 +13,7 @@ export interface Validation {
 export type ValidationId = 'use-nx-tooling' | 'use-quality-tooling' | 'use-workspace-layout' | 'normalize-typescript-config';
 export type WorkspaceValidation = Record<ValidationId, Validation>;
 
-export type ResultStatus = 'success' | 'failed' | 'skip';
+export type ResultStatus = 'success' | 'warning' | 'error' | 'info';
 
 export type DataLog = {
     expected: string;

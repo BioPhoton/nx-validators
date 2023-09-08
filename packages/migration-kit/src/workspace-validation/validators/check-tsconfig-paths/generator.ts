@@ -36,7 +36,7 @@ function checkProjectTsConfigPaths(tree: Tree): DataLog[] {
 
                 data.push({
                     expected: `Nested "${tsConfigPath}" does not contain any alias.`,
-                    status: Object.keys(paths).length > 0 ? 'failed' : 'success',
+                    status: Object.keys(paths).length > 0 ? 'error' : 'success',
                 });
             }
         }
@@ -60,7 +60,7 @@ function checkTsConfigBasePaths(tree: Tree): DataLog[] {
 
         data.push({
             expected: `File "${TS_CONFIG_BASE_FILE}" does not contains wildcard alias.`,
-            status: includesAnyWildcard ? 'failed' : 'success',
+            status: includesAnyWildcard ? 'error' : 'success',
         });
     }
 

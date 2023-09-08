@@ -50,7 +50,7 @@ export async function validateWorkspaceGenerator(
   for (const validation of Object.values(
     workspaceValidationResult?.validationResults || []
   )) {
-    if (validation.status === 'failed') {
+    if (validation.status === 'error') {
       return Promise.reject('validate-workspace validation failed');
     }
   }
@@ -84,9 +84,9 @@ async function runValidators(
         const validator = await importValidator(validatorId);
         const data = await validator(tree, {});
         const status: ResultStatus = data.some(
-          ({ status }) => status === 'failed'
+          ({ status }) => status === 'error'
         )
-          ? 'failed'
+          ? 'error'
           : 'success';
         const validatorResult = { status, data };
 

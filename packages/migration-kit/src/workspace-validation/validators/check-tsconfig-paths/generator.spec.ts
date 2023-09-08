@@ -29,7 +29,7 @@ describe('Check-ts-config-paths generator test set', () => {
             expect.arrayContaining([
                 {
                     expected: `File "tsconfig.base.json" does not contains wildcard alias.`,
-                    status: 'failed',
+                    status: 'error',
                 },
             ]),
         );
@@ -66,7 +66,7 @@ describe('Check-ts-config-paths generator test set', () => {
             expect.arrayContaining([
                 {
                     expected: `Nested "libs/lib-a/tsconfig.json" does not contain any alias.`,
-                    status: 'failed',
+                    status: 'error',
                 },
             ]),
         );
@@ -98,6 +98,6 @@ describe('Check-ts-config-paths generator test set', () => {
         const data = await checkRootTsConfigBaseGenerator(tree);
 
         // EXPECT
-        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'failed' });
+        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'error' });
     });
 });

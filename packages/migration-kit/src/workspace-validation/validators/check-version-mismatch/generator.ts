@@ -12,13 +12,13 @@ async function checkDependenciesVersions(localDeps: Record<string, string> = {},
         if (monorepoDependencyVersion && localDependencyVersion !== monorepoDependencyVersion) {
             data.push({
                 expected: `Local ${localDependencyName} version (${localDependencyVersion}) is not matching the version installed in the monorepo package.json file (${monorepoDependencyVersion})!`,
-                status: 'failed',
+                status: 'error',
             });
         }
     }
     data.push({
         expected: `Npm Dependencies are aligned with the monorepo`,
-        status: data.length === 0 ? 'success' : 'failed',
+        status: data.length === 0 ? 'success' : 'error',
     });
 
     return data;

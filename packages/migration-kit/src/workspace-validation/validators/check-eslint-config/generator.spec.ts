@@ -48,7 +48,7 @@ describe('Check-eslint-config generator test set', () => {
             const data = await checkEslintConfigGenerator(tree);
 
             // EXPECT
-            expect(data).toContainEqual({ expected: `Package eslint is installed.`, status: 'failed' });
+            expect(data).toContainEqual({ expected: `Package eslint is installed.`, status: 'error' });
         });
     });
 
@@ -61,7 +61,7 @@ describe('Check-eslint-config generator test set', () => {
             const data = await checkEslintConfigGenerator(tree);
 
             // EXPECT
-            expect(data).toContainEqual({ expected: `The configuration file ${ESLINT_CONFIG_FILE} exists.`, status: 'failed' });
+            expect(data).toContainEqual({ expected: `The configuration file ${ESLINT_CONFIG_FILE} exists.`, status: 'error' });
         });
 
         it('should match all the extends and rules from the eslint config', async () => {
@@ -97,7 +97,7 @@ describe('Check-eslint-config generator test set', () => {
             expect(data).toContainEqual({
                 expected: 'Eslint configuration of your project satisfies all the requirements.',
                 log: `Following overrides (rules, and extends) are missing in your eslint config:\n ${JSON.stringify(diff, null, '  ')}`,
-                status: 'failed',
+                status: 'error',
             });
         });
 
@@ -134,7 +134,7 @@ describe('Check-eslint-config generator test set', () => {
             expect(data).toContainEqual({
                 expected: 'Eslint configuration of your project satisfies all the requirements.',
                 log: `Following overrides (rules, and extends) are missing in your eslint config:\n ${JSON.stringify(expectedDiff, null, '  ')}`,
-                status: 'failed',
+                status: 'error',
             });
         });
     });

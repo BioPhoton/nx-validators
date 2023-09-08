@@ -18,15 +18,15 @@ const WORKSPACE_RESULT_MOCK = {
     'validation-one': {
       name: 'Validation One',
       description: 'First Validation',
-      status: 'skip',
+      status: 'info',
       validatorResults: {
         'generator-id-one': {
-          status: 'skip',
+          status: 'info',
           data: null,
           documentation: `/tree/master/Client/migration-kit/src/workspace-validation/validators/generator-id-one/README.md`,
         },
         'generator-id-two': {
-          status: 'skip',
+          status: 'info',
           data: null,
           documentation: `/tree/master/Client/migration-kit/src/workspace-validation/validators/generator-id-two/README.md`,
         },
@@ -35,10 +35,10 @@ const WORKSPACE_RESULT_MOCK = {
     'validation-two': {
       name: 'Validation Two',
       description: 'Second Validation',
-      status: 'skip',
+      status: 'info',
       validatorResults: {
         'generator-id-three': {
-          status: 'skip',
+          status: 'info',
           data: null,
           documentation: `/tree/master/Client/migration-kit/src/workspace-validation/validators/generator-id-three/README.md`,
         },
@@ -89,8 +89,8 @@ describe('Test result management for validate workspace generator', () => {
       'validation-one' as ValidationId,
       'generator-id-one' as ValidatorId,
       {
-        status: 'failed',
-        data: [{ expected: 'some failed data log', status: 'failed' }],
+        status: 'error',
+        data: [{ expected: 'some failed data log', status: 'error' }],
       }
     );
 
@@ -101,15 +101,15 @@ describe('Test result management for validate workspace generator', () => {
         'validation-one': {
           name: 'Validation One',
           description: 'First Validation',
-          status: 'failed',
+          status: 'error',
           validatorResults: {
             'generator-id-one': {
-              status: 'failed',
-              data: [{ expected: 'some failed data log', status: 'failed' }],
+              status: 'error',
+              data: [{ expected: 'some failed data log', status: 'error' }],
               documentation: `/tree/master/Client/migration-kit/src/workspace-validation/validators/generator-id-one/README.md`,
             },
             'generator-id-two': {
-              status: 'skip',
+              status: 'info',
               data: null,
               documentation: `/tree/master/Client/migration-kit/src/workspace-validation/validators/generator-id-two/README.md`,
             },

@@ -19,12 +19,12 @@ const createValidationResult = (
     [validationId]: {
       name,
       description,
-      status: 'skip',
+      status: 'info',
       validatorResults: validatorIds.reduce(
         (acc, validatorId): Record<ValidationId, ValidatorResult> => ({
           ...acc,
           [validatorId]: {
-            status: 'skip',
+            status: 'info',
             data: null,
             documentation: createValidatorDocumentationUrl(validatorId),
           },
@@ -48,9 +48,9 @@ export function createWorkspaceValidationResult(
 }
 
 export const resultStatusPriorityOrder: ResultStatus[] = [
-  'skip',
+  'info',
   'success',
-  'failed',
+  'error',
 ];
 export function updateValidatorResult(
   workspaceResult: WorkspaceValidationResult,

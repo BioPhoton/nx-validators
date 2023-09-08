@@ -56,7 +56,7 @@ describe('Check-prettier-config generator test set', () => {
       // EXPECT
       expect(data).toContainEqual({
         expected: `Package prettier is installed.`,
-        status: 'failed',
+        status: 'error',
       });
     });
   });
@@ -72,7 +72,7 @@ describe('Check-prettier-config generator test set', () => {
       // EXPECT
       expect(data).toContainEqual({
         expected: `The configuration file ${PRETTIER_CONFIG_FILE} exists.`,
-        status: 'failed',
+        status: 'error',
       });
     });
 
@@ -123,7 +123,7 @@ describe('Check-prettier-config generator test set', () => {
       expect(data).toContainEqual({
         expected:
           'Prettier Config is extending the shared config from @nx-validators/dev-kit',
-        status: 'failed',
+        status: 'error',
       });
     });
 
@@ -152,7 +152,7 @@ describe('Check-prettier-config generator test set', () => {
       // EXPECT
       expect(data).toContainEqual({
         expected: `The configuration file ${PRETTIER_IGNORE_FILE} exists.`,
-        status: 'failed',
+        status: 'error',
       });
     });
   });

@@ -6,7 +6,7 @@ import { getLocalDevDependencies } from './config-files.utils';
 export const hasDependencyInstalled = (dependencyName: string, tree: Tree, data: DataLog[]): boolean => {
     const hasDependency = Object.keys(getLocalDevDependencies(tree)).includes(dependencyName);
 
-    data.push({ expected: `Package ${dependencyName} is installed.`, status: hasDependency ? 'success' : 'failed' });
+    data.push({ expected: `Package ${dependencyName} is installed.`, status: hasDependency ? 'success' : 'error' });
 
     return hasDependency;
 };
@@ -14,7 +14,7 @@ export const hasDependencyInstalled = (dependencyName: string, tree: Tree, data:
 export const hasNotDependencyInstalled = (dependencyPattern: string, tree: Tree, data: DataLog[]): boolean => {
     const hasDependency = Object.keys(getLocalDevDependencies(tree)).some((dependency) => dependency.includes(dependencyPattern));
 
-    data.push({ expected: `There is no ${dependencyPattern}-like dependency installed.`, status: hasDependency ? 'failed' : 'success' });
+    data.push({ expected: `There is no ${dependencyPattern}-like dependency installed.`, status: hasDependency ? 'error' : 'success' });
 
     return !hasDependency;
 };
@@ -22,7 +22,7 @@ export const hasNotDependencyInstalled = (dependencyPattern: string, tree: Tree,
 export const isFileExist = (file: string, tree: Tree, data: DataLog[]): boolean => {
     const exist = tree.exists(file);
 
-    data.push({ expected: `The configuration file ${file} exists.`, status: exist ? 'success' : 'failed' });
+    data.push({ expected: `The configuration file ${file} exists.`, status: exist ? 'success' : 'error' });
 
     return exist;
 };
