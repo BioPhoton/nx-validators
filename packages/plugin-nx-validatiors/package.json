@@ -1,5 +1,5 @@
 {
-  "name": "@quality-metrics/eslint-plugin",
+  "name": "@nx-validators/nx-validators-plugin",
   "version": "0.0.1",
   "dependencies": {
     "eslint": "~8.46.0",

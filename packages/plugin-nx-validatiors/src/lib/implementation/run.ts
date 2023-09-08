@@ -52,10 +52,10 @@ export async function run(config: {
     for (const slug in validatorResults) {
       runnerOutput.audits.push({
         slug,
-        value: validatorResults[slug].severity === 'success' ? 1 : 0,
+        value: validatorResults[slug].status === 'success' ? 1 : 0,
         details: {
           issues: validatorResults[slug].data.map(
-            ({ severity, message }) => ({ message, severity } satisfies Issue)
+            ({ status: severity, expected: message }) => ({ message, severity: severity === 'failed' ? 'error' : 'success' } satisfies Issue)
           )
         },
       });
