@@ -40,7 +40,6 @@ export async function run(config: {
   const validateWorkspaceReport: WorkspaceValidationResult = await readFile(
     reportPath
   ).then((b) => JSON.parse(b.toString()));
-  console.log('validateWorkspaceReport: ', validateWorkspaceReport);
   const runnerOutput: RunnerOutput = {
     audits: [],
   };
@@ -55,8 +54,12 @@ export async function run(config: {
         value: validatorResults[slug].status === 'success' ? 1 : 0,
         details: {
           issues: validatorResults[slug].data.map(
-            ({ status: severity, expected: message }) => ({ message, severity: severity === 'failed' ? 'error' : 'success' } satisfies Issue)
-          )
+            ({ status: severity, expected: message }) =>
+              ({
+                message,
+                severity: severity === 'failed' ? 'error' : 'success', // branch with renaming ready
+              } satisfies Issue)
+          ),
         },
       });
     }

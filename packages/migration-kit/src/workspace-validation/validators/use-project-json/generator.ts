@@ -5,7 +5,7 @@ import { isFileExist } from '../../../utils/validators.utils';
 
 const EXCLUDED_FOLDERS = [/node_modules/, /^[.]/, /dist/, /ClientDist/, /ThemesDist/, /gulp/, /tmp/];
 
-function searchTree(tree: Tree, path: string = ''): DataLog[] {
+function searchTree(tree: Tree, path = ''): DataLog[] {
     const data: DataLog[] = [];
     const children = tree.children(path);
     for (const child of children) {

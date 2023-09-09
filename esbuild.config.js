@@ -9,11 +9,11 @@ esbuild.build({
     {
       name: 'TypeScriptDeclarations',
       setup(build) {
-        build.onEnd(result => {
+        build.onEnd((result) => {
           if (result.errors.length > 0) return;
 
           execSync(
-            `tsc --emitDeclarationOnly --project packages/${project}/tsconfig.lib.json --outDir dist`,
+            `tsc --emitDeclarationOnly --project packages/${project}/tsconfig.lib.json --outDir dist`
           );
         });
       },
@@ -21,12 +21,12 @@ esbuild.build({
     {
       name: 'PackageJSON',
       setup(build) {
-        build.onEnd(result => {
+        build.onEnd((result) => {
           if (result.errors.length > 0) return;
 
           /** @type {import('type-fest').PackageJson} */
           const packageJson = JSON.parse(
-            readFileSync(`packages/${project}/package.json`).toString(),
+            readFileSync(`packages/${project}/package.json`).toString()
           );
 
           packageJson.type = 'module';
@@ -35,7 +35,7 @@ esbuild.build({
 
           writeFileSync(
             `dist/packages/${project}/package.json`,
-            JSON.stringify(packageJson, null, 2),
+            JSON.stringify(packageJson, null, 2)
           );
         });
       },

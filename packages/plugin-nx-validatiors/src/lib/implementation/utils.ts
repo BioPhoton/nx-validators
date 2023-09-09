@@ -1,12 +1,15 @@
-import {readdirSync, readFileSync} from 'fs';
-import {dirname, join} from 'path';
-import {AuditGroup, AuditMetadata} from '@quality-metrics/models';
-import {validatorsFolder, WORKSPACE_VALIDATIONS, WorkspaceValidation,} from '@nx-validators/migration-kit';
-import {fileURLToPath} from "url";
+import { readdirSync, readFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { AuditGroup, AuditMetadata } from '@quality-metrics/models';
+import {
+  validatorsFolder,
+  WORKSPACE_VALIDATIONS,
+  WorkspaceValidation,
+} from '@nx-validators/migration-kit';
+import { fileURLToPath } from 'url';
 
 export const getDirname = (import_meta_url: string) =>
   dirname(fileURLToPath(import_meta_url));
-
 
 export const docsUrlBaseUrl =
   'https://github.com/BioPhoton/nx-validators/tree/main';
