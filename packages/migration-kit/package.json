@@ -1,5 +1,5 @@
 {
-    "name": "@frontend/migration-kit",
+    "name": "@nx-validators/migration-kit",
     "version": "0.0.0",
     "type": "commonjs",
     "generators": "./generators.json",

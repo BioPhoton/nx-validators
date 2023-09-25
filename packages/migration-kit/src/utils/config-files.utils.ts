@@ -43,4 +43,4 @@ export const getLocalPrettierConfig = (tree: Tree) => tree.read(PRETTIER_CONFIG_
 export const getLocalTsConfigBase = (tree: Tree): BaseTsConfigJson => readJson(tree, TS_CONFIG_BASE_FILE);
 export const getLocalNxJson = (tree: Tree): NxJsonConfiguration => readJson(tree, NX_JSON_FILE);
 export const hasMigrationKitInTsPaths = (tree: Tree): boolean =>
-    getLocalTsConfigBase(tree)?.compilerOptions?.paths?.['@frontend/migration-kit'] != null;
+    getLocalTsConfigBase(tree)?.compilerOptions?.paths?.['@nx-validators/migration-kit'] != null;

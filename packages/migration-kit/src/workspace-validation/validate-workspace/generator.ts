@@ -47,7 +47,7 @@ async function checkMigrationKitVersion(tree: Tree): Promise<void | string> {
     const latestVersion = getMigrationKitLatestVersion();
     if (!localVersion?.includes(latestVersion)) {
         return Promise.reject(
-            `Your migration-kit is outdated!!!\n You are using v${localVersion} but the latest is v${latestVersion}:\n You can upgrade by running yarn add @frontend/migration-kit@${latestVersion} -D`,
+            `Your migration-kit is outdated!!!\n You are using v${localVersion} but the latest is v${latestVersion}:\n You can upgrade by running yarn add @nx-validators/migration-kit@${latestVersion} -D`,
         );
     }
 
@@ -94,7 +94,7 @@ async function selectValidations(workspaceValidations: WorkspaceValidation): Pro
     return checkbox<ValidationId>({
         message: 'Choose validation to run:',
         choices: (Object.entries(workspaceValidations) as [ValidationId, Validation][]).map(([validationId, { name, validatorIds }]) => {
-            const validatorCommands = validatorIds.map((validatorId) => `\n      -> nx g @frontend/migration-kit:${validatorId}`);
+            const validatorCommands = validatorIds.map((validatorId) => `\n      -> nx g @nx-validators/migration-kit:${validatorId}`);
             return {
                 name: `${name}${validatorCommands}`,
                 value: validationId,

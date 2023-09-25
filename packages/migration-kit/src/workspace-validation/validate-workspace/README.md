@@ -5,7 +5,7 @@
 Workspace validation utilizes the power of [Nx generators](https://nx.dev/core-features/plugin-features/use-code-generators) behind the scenes. To initiate the migration validation, run the following command:
 
 ```
-nx g @frontend/migration-kit:validate-workspace
+nx g @nx-validators/migration-kit:validate-workspace
 ```
 
 ## How does it work?
@@ -92,7 +92,7 @@ const result = {
 Based on the above result, we can generate a list of reports. You can configure the reports when executing the `validate-workspace` generator:
 
 ```
-nx g @frontend/migration-kit:validate-workspace --reports=json,console
+nx g @nx-validators/migration-kit:validate-workspace --reports=json,console
 ```
 
 The available report formats are:
