@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "UseOutputDist",
+    "title": "",
+    "type": "object",
+    "properties": {},
+    "required": []
+}

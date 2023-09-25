@@ -47,7 +47,7 @@ describe('Check-version-mismatch generator test set', () => {
         // EXPECT
         const expectedData: DataLog[] = [
             {
-                expected: `Local @nx/workspace version (1.0.0) is not matching the version installed in the monorepo package.json file (${MONOREPO_PACKAGE_JSON.devDependencies['@nx/workspace']})!`,
+                expected: `Local @nx/workspace version (1.0.0) is not matching the version installed in the monorepo package.json file (${MONOREPO_PACKAGE_JSON.devDependencies!['@nx/workspace']})!`,
                 status: 'failed',
             },
             {

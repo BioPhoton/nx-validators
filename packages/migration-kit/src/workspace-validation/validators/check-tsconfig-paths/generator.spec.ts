@@ -98,6 +98,6 @@ describe('Check-ts-config-paths generator test set', () => {
         const data = await checkRootTsConfigBaseGenerator(tree);
 
         // EXPECT
-        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'failed' });
+        expect(data).toContainEqual({ expected: `The path to "${TS_CONFIG_BASE_FILE}" file or folder exists.`, status: 'failed' });
     });
 });

@@ -1,62 +1,13 @@
 export const MONOREPO_ESLINT_CONFIG_MOCK = {
     root: true,
-    ignorePatterns: ['!**/*'],
+    ignorePatterns: ['**/*'],
+    plugins: ['@nx'],
     overrides: [
         {
-            files: ['*.ts'],
-            extends: [
-                'eslint:recommended',
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@angular-eslint/recommended',
-                'plugin:@angular-eslint/template/process-inline-templates',
-                'plugin:jest/recommended',
-                'plugin:prettier/recommended',
-                'plugin:import/typescript',
-                'plugin:import/errors',
-                'plugin:import/warnings',
-            ],
-            parserOptions: {
-                project: ['Client/vanilla/tsconfig.lib.json', 'Client/vanilla/tsconfig.spec.json'],
-                createDefaultProgram: true,
-            },
+            files: ['*.ts', '*.tsx'],
+            extends: ['plugin:@nx/typescript'],
             rules: {
-                'prettier/prettier': 'warn',
-                '@angular-eslint/component-selector': [
-                    'error',
-                    {
-                        type: 'element',
-                        prefix: ['vn', 'lh', 'pg'],
-                        style: 'kebab-case',
-                    },
-                ],
-                '@angular-eslint/directive-class-suffix': 'off',
-                '@angular-eslint/directive-selector': [
-                    'error',
-                    {
-                        type: 'attribute',
-                        prefix: ['vn', 'lh', 'pg'],
-                        style: 'camelCase',
-                    },
-                ],
-                '@angular-eslint/no-attribute-decorator': 'error',
-                '@angular-eslint/no-forward-ref': 'warn',
-                '@angular-eslint/no-output-on-prefix': 'off',
-                '@angular-eslint/no-output-native': 'off',
-                '@angular-eslint/no-host-metadata-property': 'off',
-                '@angular-eslint/use-pipe-transform-interface': 'off',
-                '@typescript-eslint/member-delimiter-style': [
-                    'error',
-                    {
-                        multiline: {
-                            delimiter: 'semi',
-                            requireLast: true,
-                        },
-                        singleline: {
-                            delimiter: 'semi',
-                            requireLast: false,
-                        },
-                    },
-                ],
+                '@nx/enforce-module-boundaries': 'error',
                 '@typescript-eslint/no-empty-interface': 'off',
                 '@typescript-eslint/member-ordering': 'off',
                 '@typescript-eslint/no-unsafe-call': 'off',
@@ -80,30 +31,6 @@ export const MONOREPO_ESLINT_CONFIG_MOCK = {
                 '@typescript-eslint/require-await': 'off',
                 '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
                 '@typescript-eslint/no-unused-vars': 'error',
-                '@typescript-eslint/semi': ['error'],
-                'jest/no-jasmine-globals': 'off',
-                'jest/expect-expect': 'off',
-                'jest/valid-expect': 'off',
-                'jest/valid-title': 'off',
-                'jest/no-conditional-expect': 'off',
-                'jest/no-export': 'off',
-                'jest/no-standalone-expect': 'off',
-                'jest/no-alias-methods': 'off',
-                'jest/no-done-callback': 'off',
-                'jest/no-test-prefixes': 'off',
-                'comma-dangle': ['error', 'always-multiline'],
-                'import/order': [
-                    'warn',
-                    {
-                        'groups': ['builtin', 'external', 'index'],
-                        'newlines-between': 'always',
-                        'alphabetize': {
-                            order: 'asc',
-                            caseInsensitive: true,
-                        },
-                    },
-                ],
-                'import/no-unresolved': 'off',
                 'no-fallthrough': 'off',
                 'no-prototype-builtins': 'off',
                 'no-case-declarations': 'off',
@@ -117,19 +44,41 @@ export const MONOREPO_ESLINT_CONFIG_MOCK = {
                 'prefer-spread': 'off',
                 'prefer-const': 'warn',
                 'no-console': 'error',
-            },
-            settings: {
-                jest: {
-                    version: 24,
-                },
+                'no-restricted-imports': [
+                    'error',
+                    {
+                        paths: [
+                            {
+                                name: 'lodash',
+                                message: "Import from 'lodash-es' instead",
+                            },
+                        ],
+                    },
+                ],
             },
         },
         {
-            files: ['*.html'],
-            excludedFiles: ['*inline-template-*.component.html'],
-            extends: ['plugin:@angular-eslint/template/recommended', 'plugin:prettier/recommended'],
+            files: ['*.js', '*.jsx'],
+            extends: ['plugin:@nx/javascript'],
+            rules: {},
+        },
+        {
+            files: ['*.spec.ts', '*.spec.tsx', '*.spec.js', '*.spec.jsx'],
+            extends: ['plugin:jest/recommended'],
+            env: {
+                jest: true,
+            },
             rules: {
-                '@angular-eslint/template/use-track-by-function': 'error',
+                'jest/no-jasmine-globals': 'off',
+                'jest/expect-expect': 'off',
+                'jest/valid-expect': 'off',
+                'jest/valid-title': 'off',
+                'jest/no-conditional-expect': 'off',
+                'jest/no-export': 'off',
+                'jest/no-standalone-expect': 'off',
+                'jest/no-alias-methods': 'off',
+                'jest/no-done-callback': 'off',
+                'jest/no-test-prefixes': 'off',
             },
         },
         {
@@ -139,63 +88,15 @@ export const MONOREPO_ESLINT_CONFIG_MOCK = {
         },
     ],
 };
-export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_EXTENDS = {
+export const MONOREPO_ESLINT_CONFIG_MOCK_DIFF_EXTENDS = {
     root: true,
-    ignorePatterns: ['!**/*'],
+    ignorePatterns: ['**/*'],
+    plugins: ['@nx'],
     overrides: [
         {
-            files: ['*.ts'],
-            extends: [
-                'eslint:recommended',
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@angular-eslint/recommended',
-                'plugin:@angular-eslint/template/process-inline-templates',
-                'plugin:import/typescript',
-                'plugin:import/errors',
-                'plugin:import/warnings',
-            ],
-            parserOptions: {
-                project: ['Client/vanilla/tsconfig.lib.json', 'Client/vanilla/tsconfig.spec.json'],
-                createDefaultProgram: true,
-            },
+            files: ['*.ts', '*.tsx'],
             rules: {
-                'prettier/prettier': 'warn',
-                '@angular-eslint/component-selector': [
-                    'error',
-                    {
-                        type: 'element',
-                        prefix: ['vn', 'lh', 'pg'],
-                        style: 'kebab-case',
-                    },
-                ],
-                '@angular-eslint/directive-class-suffix': 'off',
-                '@angular-eslint/directive-selector': [
-                    'error',
-                    {
-                        type: 'attribute',
-                        prefix: ['vn', 'lh', 'pg'],
-                        style: 'camelCase',
-                    },
-                ],
-                '@angular-eslint/no-attribute-decorator': 'error',
-                '@angular-eslint/no-forward-ref': 'warn',
-                '@angular-eslint/no-output-on-prefix': 'off',
-                '@angular-eslint/no-output-native': 'off',
-                '@angular-eslint/no-host-metadata-property': 'off',
-                '@angular-eslint/use-pipe-transform-interface': 'off',
-                '@typescript-eslint/member-delimiter-style': [
-                    'error',
-                    {
-                        multiline: {
-                            delimiter: 'semi',
-                            requireLast: true,
-                        },
-                        singleline: {
-                            delimiter: 'semi',
-                            requireLast: false,
-                        },
-                    },
-                ],
+                '@nx/enforce-module-boundaries': 'error',
                 '@typescript-eslint/no-empty-interface': 'off',
                 '@typescript-eslint/member-ordering': 'off',
                 '@typescript-eslint/no-unsafe-call': 'off',
@@ -219,30 +120,6 @@ export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_EXTENDS = {
                 '@typescript-eslint/require-await': 'off',
                 '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
                 '@typescript-eslint/no-unused-vars': 'error',
-                '@typescript-eslint/semi': ['error'],
-                'jest/no-jasmine-globals': 'off',
-                'jest/expect-expect': 'off',
-                'jest/valid-expect': 'off',
-                'jest/valid-title': 'off',
-                'jest/no-conditional-expect': 'off',
-                'jest/no-export': 'off',
-                'jest/no-standalone-expect': 'off',
-                'jest/no-alias-methods': 'off',
-                'jest/no-done-callback': 'off',
-                'jest/no-test-prefixes': 'off',
-                'comma-dangle': ['error', 'always-multiline'],
-                'import/order': [
-                    'warn',
-                    {
-                        'groups': ['builtin', 'external', 'index'],
-                        'newlines-between': 'always',
-                        'alphabetize': {
-                            order: 'asc',
-                            caseInsensitive: true,
-                        },
-                    },
-                ],
-                'import/no-unresolved': 'off',
                 'no-fallthrough': 'off',
                 'no-prototype-builtins': 'off',
                 'no-case-declarations': 'off',
@@ -256,19 +133,41 @@ export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_EXTENDS = {
                 'prefer-spread': 'off',
                 'prefer-const': 'warn',
                 'no-console': 'error',
-            },
-            settings: {
-                jest: {
-                    version: 24,
-                },
+                'no-restricted-imports': [
+                    'error',
+                    {
+                        paths: [
+                            {
+                                name: 'lodash',
+                                message: "Import from 'lodash-es' instead",
+                            },
+                        ],
+                    },
+                ],
             },
         },
         {
-            files: ['*.html'],
-            excludedFiles: ['*inline-template-*.component.html'],
-            extends: ['plugin:@angular-eslint/template/recommended', 'plugin:prettier/recommended'],
+            files: ['*.js', '*.jsx'],
+            extends: ['plugin:@nx/javascript'],
+            rules: {},
+        },
+        {
+            files: ['*.spec.ts', '*.spec.tsx', '*.spec.js', '*.spec.jsx'],
+            extends: ['plugin:jest/recommended'],
+            env: {
+                jest: true,
+            },
             rules: {
-                '@angular-eslint/template/use-track-by-function': 'error',
+                'jest/no-jasmine-globals': 'off',
+                'jest/expect-expect': 'off',
+                'jest/valid-expect': 'off',
+                'jest/valid-title': 'off',
+                'jest/no-conditional-expect': 'off',
+                'jest/no-export': 'off',
+                'jest/no-standalone-expect': 'off',
+                'jest/no-alias-methods': 'off',
+                'jest/no-done-callback': 'off',
+                'jest/no-test-prefixes': 'off',
             },
         },
         {
@@ -278,65 +177,15 @@ export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_EXTENDS = {
         },
     ],
 };
-export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_RULES = {
+export const MONOREPO_ESLINT_CONFIG_MOCK_DIFF_RULES = {
     root: true,
-    ignorePatterns: ['!**/*'],
+    ignorePatterns: ['**/*'],
+    plugins: ['@nx'],
     overrides: [
         {
-            files: ['*.ts'],
-            extends: [
-                'eslint:recommended',
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@angular-eslint/recommended',
-                'plugin:@angular-eslint/template/process-inline-templates',
-                'plugin:jest/recommended',
-                'plugin:prettier/recommended',
-                'plugin:import/typescript',
-                'plugin:import/errors',
-                'plugin:import/warnings',
-            ],
-            parserOptions: {
-                project: ['Client/vanilla/tsconfig.lib.json', 'Client/vanilla/tsconfig.spec.json'],
-                createDefaultProgram: true,
-            },
+            files: ['*.ts', '*.tsx'],
+            extends: ['plugin:@nx/typescript'],
             rules: {
-                'prettier/prettier': 'warn',
-                '@angular-eslint/component-selector': [
-                    'error',
-                    {
-                        type: 'element',
-                        prefix: ['vn', 'lh', 'pg'],
-                        style: 'kebab-case',
-                    },
-                ],
-                '@angular-eslint/directive-class-suffix': 'off',
-                '@angular-eslint/directive-selector': [
-                    'error',
-                    {
-                        type: 'attribute',
-                        prefix: ['vn', 'lh', 'pg'],
-                        style: 'camelCase',
-                    },
-                ],
-                '@angular-eslint/no-attribute-decorator': 'error',
-                '@angular-eslint/no-forward-ref': 'warn',
-                '@angular-eslint/no-output-on-prefix': 'off',
-                '@angular-eslint/no-output-native': 'off',
-                '@angular-eslint/no-host-metadata-property': 'off',
-                '@angular-eslint/use-pipe-transform-interface': 'off',
-                '@typescript-eslint/member-delimiter-style': [
-                    'error',
-                    {
-                        multiline: {
-                            delimiter: 'semi',
-                            requireLast: true,
-                        },
-                        singleline: {
-                            delimiter: 'semi',
-                            requireLast: false,
-                        },
-                    },
-                ],
                 '@typescript-eslint/no-empty-interface': 'off',
                 '@typescript-eslint/member-ordering': 'off',
                 '@typescript-eslint/no-unsafe-call': 'off',
@@ -358,20 +207,6 @@ export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_RULES = {
                 '@typescript-eslint/no-var-requires': 'off',
                 '@typescript-eslint/no-misused-promises': 'off',
                 '@typescript-eslint/require-await': 'off',
-                '@typescript-eslint/no-unnecessary-type-assertion': 'warn',
-                '@typescript-eslint/no-unused-vars': 'error',
-                '@typescript-eslint/semi': ['error'],
-                'jest/no-jasmine-globals': 'off',
-                'jest/expect-expect': 'off',
-                'jest/valid-expect': 'off',
-                'jest/valid-title': 'off',
-                'jest/no-conditional-expect': 'off',
-                'jest/no-export': 'off',
-                'jest/no-standalone-expect': 'off',
-                'jest/no-alias-methods': 'off',
-                'jest/no-done-callback': 'off',
-                'jest/no-test-prefixes': 'off',
-                'comma-dangle': ['error', 'always-multiline'],
                 'no-fallthrough': 'off',
                 'no-prototype-builtins': 'off',
                 'no-case-declarations': 'off',
@@ -386,18 +221,29 @@ export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_RULES = {
                 'prefer-const': 'warn',
                 'no-console': 'error',
             },
-            settings: {
-                jest: {
-                    version: 24,
-                },
-            },
         },
         {
-            files: ['*.html'],
-            excludedFiles: ['*inline-template-*.component.html'],
-            extends: ['plugin:@angular-eslint/template/recommended', 'plugin:prettier/recommended'],
+            files: ['*.js', '*.jsx'],
+            extends: ['plugin:@nx/javascript'],
+            rules: {},
+        },
+        {
+            files: ['*.spec.ts', '*.spec.tsx', '*.spec.js', '*.spec.jsx'],
+            extends: ['plugin:jest/recommended'],
+            env: {
+                jest: true,
+            },
             rules: {
-                '@angular-eslint/template/use-track-by-function': 'error',
+                'jest/no-jasmine-globals': 'off',
+                'jest/expect-expect': 'off',
+                'jest/valid-expect': 'off',
+                'jest/valid-title': 'off',
+                'jest/no-conditional-expect': 'off',
+                'jest/no-export': 'off',
+                'jest/no-standalone-expect': 'off',
+                'jest/no-alias-methods': 'off',
+                'jest/no-done-callback': 'off',
+                'jest/no-test-prefixes': 'off',
             },
         },
         {
@@ -407,3 +253,15 @@ export const VANILLA_ESLINT_CONFIG_MOCK_DIFF_RULES = {
         },
     ],
 };
+
+export const MONOREPO_YARNRC_CONFIG_MOCK = `
+enableStrictSsl: false
+httpTimeout: 600000
+nodeLinker: node-modules
+npmAlwaysAuth: true
+npmRegistryServer: "https://artifactory.bwinparty.corp/artifactory/api/npm/npm-public"
+plugins:
+  - path: .yarn/plugins/@yarnpkg/plugin-interactive-tools.cjs
+    spec: "@yarnpkg/plugin-interactive-tools"
+yarnPath: .yarn/releases/yarn-3.6.3.cjs
+`;

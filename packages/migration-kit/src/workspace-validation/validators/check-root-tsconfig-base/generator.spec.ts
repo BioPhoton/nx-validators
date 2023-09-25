@@ -22,7 +22,7 @@ describe('Check-root-tsconfig-base generator test set', () => {
         const data = await checkRootTsConfigBaseGenerator(tree);
 
         // EXPECT
-        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'failed' });
+        expect(data).toContainEqual({ expected: `The path to "${TS_CONFIG_BASE_FILE}" file or folder exists.`, status: 'failed' });
     });
 
     it('should have a tsconfig.base.json configuration', async () => {
@@ -33,19 +33,25 @@ describe('Check-root-tsconfig-base generator test set', () => {
         const data = await checkRootTsConfigBaseGenerator(tree);
 
         // EXPECT
-        expect(data).toContainEqual({ expected: `The configuration file ${TS_CONFIG_BASE_FILE} exists.`, status: 'success' });
+        expect(data).toContainEqual({ expected: `The path to "${TS_CONFIG_BASE_FILE}" file or folder exists.`, status: 'success' });
     });
 
     it('should fail if tsconfig.base.json does not satisfies vanilla one', async () => {
         //GIVEN
         tree.write('tsconfig.base.json', JSON.stringify(BASE_TSCONFIG_JSON_WITHOUT_ROOT_DIR));
 
+        const diff = {
+            compilerOptions: {
+                rootDir: '.',
+            },
+        };
         // TEST
         const data = await checkRootTsConfigBaseGenerator(tree);
 
         // EXPECT
         expect(data).toContainEqual({
             expected: `Configurations in file "${TS_CONFIG_BASE_FILE}" are matching the monorepo configurations`,
+            log: `Following configuration is missing from your tsconfig.base.json:\n ${JSON.stringify(diff, null, '  ')}`,
             status: 'failed',
         });
     });

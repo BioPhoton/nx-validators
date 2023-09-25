@@ -11,7 +11,7 @@ const readREADME = (folder) => {
     const readmeText = fs.readFileSync(readmePath, 'utf8');
 
     const title = readmeText.match(/^# (.*)/)[1];
-    const descriptionMatch = readmeText.match(/## Description\n(.*)/);
+    const descriptionMatch = readmeText.match(/## Description\r?\n(.*)/);
     if (!descriptionMatch?.length) {
         throw new Error(`Description is missing in the README.md: ${readmePath}`);
     }

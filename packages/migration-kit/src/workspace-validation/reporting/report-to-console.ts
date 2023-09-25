@@ -26,9 +26,24 @@ type LogConfig = {
     icon?: string;
 };
 
-const reportLog = (message: string, { messageColor, label, labelTextColor, labelBackgroundColor, icon }: LogConfig, indentation: string = '') => {
-    console.log(indentation, labelTextColor || '' + labelBackgroundColor, icon, label, DEFAULT_COLOR + messageColor, message, DEFAULT_COLOR);
-};
+const levelMap = [
+    {
+        name: 'WORKSPACE VALIDATION',
+        indentation: '',
+    },
+    {
+        name: 'VALIDATION',
+        indentation: '',
+    },
+    {
+        name: 'VALIDATOR',
+        indentation: TAB,
+    },
+    {
+        name: 'EXPECT',
+        indentation: TAB + TAB,
+    },
+];
 
 const configMap: Record<ResultStatus, LogConfig> = {
     success: {
@@ -50,21 +65,27 @@ const configMap: Record<ResultStatus, LogConfig> = {
     },
 };
 
+const reportLog = (level: number, status: ResultStatus, message: string) => {
+    const { messageColor, label, labelTextColor, labelBackgroundColor, icon }: LogConfig = configMap[status];
+    const { indentation, name } = levelMap[level];
+    console.log(indentation, labelTextColor || '' + labelBackgroundColor, icon, name, label, DEFAULT_COLOR + messageColor, message, DEFAULT_COLOR);
+};
+
 export const capitalize = (str: string): string => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-export default function reportToConsole({ validationResults }: WorkspaceValidationResult): void {
+export default function reportToConsole(workspaceValidationResult: WorkspaceValidationResult): void {
     console.log('\n');
-    Object.values(validationResults).forEach(({ name, validatorResults, status }) => {
+    Object.values(workspaceValidationResult.validationResults).forEach(({ name, validatorResults, status }) => {
         // log validation name and status
-        reportLog(name, configMap[status]);
+        reportLog(1, status, name);
         Object.entries(validatorResults).forEach(([validator, { documentation, data, status: validatorStatus }]) => {
             // log validator name
-            console.log(TAB, capitalize(validator));
+            reportLog(2, validatorStatus, capitalize(validator));
             (data || []).forEach(({ expected, status: logStatus, log }) => {
                 // log status and expected description for each data log
-                reportLog(expected, configMap[logStatus], TAB + TAB);
+                reportLog(3, logStatus, expected);
                 if (log) {
                     // log extra data
                     const logWithIndent = log.replaceAll('\n', '\n' + TAB + TAB);
@@ -78,4 +99,10 @@ export default function reportToConsole({ validationResults }: WorkspaceValidati
         });
         console.log('\n');
     });
+
+    console.log('-----------------------------------------------------------------------');
+    reportLog(0, workspaceValidationResult.status, '');
+    console.log(TAB, 'Success:', workspaceValidationResult.total.success);
+    console.log(TAB, 'Failed:', workspaceValidationResult.total.failed);
+    console.log(TAB, 'Skip:', workspaceValidationResult.total.skip);
 }

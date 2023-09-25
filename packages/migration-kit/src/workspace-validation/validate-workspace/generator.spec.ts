@@ -1,6 +1,7 @@
 import { CancelablePromise } from '@inquirer/type';
 import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import * as child_process from 'child_process';
 
 import { report } from '../reporting/report';
 import * as generatorResult from './generator-result';
@@ -12,6 +13,18 @@ async function mockCheckboxPrompt(validatorIds: string[]): Promise<void> {
     });
 }
 
+const hasMigrationKitInTsPathsMock = jest.fn(() => false);
+jest.mock('../../utils/config-files.utils', () => ({
+    hasMigrationKitInTsPaths: hasMigrationKitInTsPathsMock,
+}));
+
+const getLocalMigrationKitVersionMock = jest.fn(() => '0.5.0');
+const getMigrationKitLatestVersionMock = jest.fn(() => '0.5.0');
+jest.mock('../../utils/npm-package.utils', () => ({
+    getLocalMigrationKitVersion: getLocalMigrationKitVersionMock,
+    getMigrationKitLatestVersion: getMigrationKitLatestVersionMock,
+}));
+
 jest.mock('../validators/generator-id-success/generator', () => ({ default: jest.fn().mockResolvedValue([{ status: 'success' }]) }), {
     virtual: true,
 });
@@ -19,6 +32,8 @@ jest.mock('../validators/generator-id-success/generator', () => ({ default: jest
 jest.mock('../reporting/report', () => ({
     report: jest.fn(),
 }));
+
+jest.spyOn(child_process, 'execSync').mockImplementation(() => '18.0.0');
 
 const workspaceValidationMock = jest.fn();
 jest.mock('./workspace-validations', () => ({
@@ -221,6 +236,86 @@ describe('Validate Workspace Generator', () => {
 
             expect(updateValidatorResultSpy).toHaveBeenCalledTimes(1);
             expect(report).toHaveBeenCalledWith(['json'], expect.any(Object), '.');
+        });
+    });
+
+    describe('Check node version', () => {
+        it('Throw if nodejs version is outdated', async () => {
+            jest.spyOn(child_process, 'execSync').mockImplementation(() => '17.0.0');
+
+            const schema: ValidateWorkspaceGeneratorSchema = {
+                runAll: true,
+                reports: [],
+            };
+
+            const { validateWorkspaceGenerator } = await import('./generator');
+            await expect(validateWorkspaceGenerator(tree, schema)).rejects.toMatch('Node.js is outdated');
+        });
+
+        it('Pass if migration-kit is up-to-date', async () => {
+            jest.spyOn(child_process, 'execSync').mockImplementation(() => '18.0.0');
+
+            const schema: ValidateWorkspaceGeneratorSchema = {
+                runAll: true,
+                reports: ['console'],
+            };
+
+            const { validateWorkspaceGenerator } = await import('./generator');
+            await expect(validateWorkspaceGenerator(tree, schema)).resolves.toEqual(undefined);
+        });
+
+        it('Pass if migration-kit is newer', async () => {
+            jest.spyOn(child_process, 'execSync').mockImplementation(() => '20.0.0');
+
+            const schema: ValidateWorkspaceGeneratorSchema = {
+                runAll: true,
+                reports: ['console'],
+            };
+
+            const { validateWorkspaceGenerator } = await import('./generator');
+            await expect(validateWorkspaceGenerator(tree, schema)).resolves.toEqual(undefined);
+        });
+    });
+
+    describe('Check outdated migration-kit', () => {
+        it('Throw if migration-kit is outdated', async () => {
+            hasMigrationKitInTsPathsMock.mockReturnValue(false);
+            getLocalMigrationKitVersionMock.mockReturnValue('0.5.0');
+            getMigrationKitLatestVersionMock.mockReturnValue('0.6.0');
+
+            const schema: ValidateWorkspaceGeneratorSchema = {
+                runAll: true,
+                reports: ['console'],
+            };
+
+            const { validateWorkspaceGenerator } = await import('./generator');
+            await expect(validateWorkspaceGenerator(tree, schema)).rejects.toMatch('migration-kit is outdated');
+        });
+
+        it('Pass if migration-kit is present in ts-config paths', async () => {
+            hasMigrationKitInTsPathsMock.mockReturnValue(true);
+
+            const schema: ValidateWorkspaceGeneratorSchema = {
+                runAll: true,
+                reports: ['console'],
+            };
+
+            const { validateWorkspaceGenerator } = await import('./generator');
+            await expect(validateWorkspaceGenerator(tree, schema)).resolves.toEqual(undefined);
+        });
+
+        it('Pass if migration-kit is up-to-date', async () => {
+            hasMigrationKitInTsPathsMock.mockReturnValue(false);
+            getLocalMigrationKitVersionMock.mockReturnValue('0.6.0');
+            getMigrationKitLatestVersionMock.mockReturnValue('0.6.0');
+
+            const schema: ValidateWorkspaceGeneratorSchema = {
+                runAll: true,
+                reports: ['console'],
+            };
+
+            const { validateWorkspaceGenerator } = await import('./generator');
+            await expect(validateWorkspaceGenerator(tree, schema)).resolves.toEqual(undefined);
         });
     });
 });

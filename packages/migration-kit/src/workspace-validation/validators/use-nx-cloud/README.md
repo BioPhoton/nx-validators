@@ -5,11 +5,6 @@
 ## Description
 This validator checks that the workspace is using Nx Cloud.
 
-## Run
-```bash
-nx generate @nx-validators/migration-kit:use-nx-cloud
-```
-
 ## Solution
 
 1. Ensure you have the default configuration in nx.json
