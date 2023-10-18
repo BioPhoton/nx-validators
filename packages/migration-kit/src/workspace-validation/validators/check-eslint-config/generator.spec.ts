@@ -10,8 +10,9 @@ import { MONOREPO_PACKAGE_JSON } from '../../../../fixtures/package-json.fixture
 import * as configUtils from '../../../utils/config-files.utils';
 import { ESLINT_CONFIG_FILE } from '../../../utils/config-files.utils';
 import { checkEslintConfigGenerator } from './generator';
+import {PackageJson} from "../../../types/package-json.types";
 
-jest.spyOn(configUtils, 'getMonorepoPackageJson').mockImplementation(() => Promise.resolve(MONOREPO_PACKAGE_JSON));
+jest.spyOn(configUtils, 'getMonorepoPackageJson').mockImplementation(() => Promise.resolve(MONOREPO_PACKAGE_JSON as PackageJson));
 jest.spyOn(configUtils, 'getMonorepoEslintConfig').mockImplementation(() => Promise.resolve(MONOREPO_ESLINT_CONFIG_MOCK));
 
 describe('Check-eslint-config generator test set', () => {

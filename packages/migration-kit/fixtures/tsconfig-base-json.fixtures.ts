@@ -21,7 +21,7 @@ export const BASE_TSCONFIG_JSON_WITH_WILDCARD_ALIAS = withPaths(BASE_TSCONFIG_JS
     'module/*': ['path/to/module/*'],
 });
 
-export function withPaths(tsconfig: any, paths: Record<string, string[]>) {
+export function withPaths<T = Record<string, any>>(tsconfig: T, paths: Record<string, string[]>) {
     return {
         ...tsconfig,
         compilerOptions: {

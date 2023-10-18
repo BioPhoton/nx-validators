@@ -4,7 +4,7 @@ import { AuditGroup, AuditMetadata } from '@quality-metrics/models';
 import {
   validatorsFolder,
   WORKSPACE_VALIDATIONS,
-  WorkspaceValidation,
+
 } from '@nx-validators/migration-kit';
 import { fileURLToPath } from 'url';
 
@@ -41,12 +41,12 @@ export function generateGroupsFromValidators() {
 
   for (const slug in WORKSPACE_VALIDATIONS) {
     const { name, validatorIds, description } =
-      WORKSPACE_VALIDATIONS[slug as keyof WorkspaceValidation];
+      (WORKSPACE_VALIDATIONS as any)[slug];
     groups.push({
       slug,
       description,
       title: name,
-      refs: validatorIds.map((auditRef) => ({
+      refs: validatorIds.map((auditRef: any) => ({
         slug: auditRef.toString(),
         weight: 0,
       })),

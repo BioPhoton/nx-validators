@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite/plugin-eslint',
+  cacheDir: '../../node_modules/.vite/plugin-nx-validators',
 
   plugins: [nxViteTsPaths()],
 

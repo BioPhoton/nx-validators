@@ -6,22 +6,30 @@
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/packages/plugin-nx-validators",
         "main": "packages/plugin-nx-validators/src/index.ts",
         "tsConfig": "packages/plugin-nx-validators/tsconfig.lib.json",
-        "assets": ["packages/plugin-nx-validators/*.md"],
+        "assets": [
+          "packages/plugin-nx-validators/*.md"
+        ],
         "esbuildConfig": "esbuild.config.js"
       }
     },
     "publish": {
       "command": "node tools/scripts/publish.mjs plugin-nx-validators {args.ver} {args.tag}",
-      "dependsOn": ["build"]
+      "dependsOn": [
+        "build"
+      ]
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
         "lintFilePatterns": [
           "packages/plugin-nx-validators/**/*.ts",
@@ -31,10 +39,18 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/packages/plugin-nx-validators"],
+      "outputs": [
+        "coverage/packages/plugin-nx-validators"
+      ],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/packages/plugin-nx-validators"
+      }
+    },
+    "exec": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "ts-node ./packages/plugin-nx-validatiors/src/lib/bin.ts"
       }
     }
   },

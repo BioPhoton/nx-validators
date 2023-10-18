@@ -5,14 +5,21 @@ import { readFile } from 'fs/promises';
 import { cli } from '@quality-metrics/cli';
 import { mockConfig, getDirname } from '../../test';
 import { join } from 'path';
-import { writeFile, unlink } from 'fs/promises';
+import { writeFile } from 'fs/promises';
+import { unlinkSync, existsSync } from 'fs';
+import {} from '@nx/plugin/testing';
 
 const pluginSlug = 'nx-validators';
 const outputPath = 'dist/reports/nx-validators';
 const configPath = join(getDirname(import.meta.url), 'code-pushup.config.js');
 
-describe('eslintPlugin', () => {
-  afterEach(async () => await unlink(configPath));
+describe('nxValidatorsPlugin', () => {
+  afterEach(async () => {
+    if (existsSync(configPath)) {
+      unlinkSync(configPath);
+    }
+  });
+
   it('should create valid plugin config', async () => {
     const pluginConfig = await nxValidatorsPlugin({ outputPath });
     expect(() => pluginConfigSchema.parse(pluginConfig)).not.toThrow();

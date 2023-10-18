@@ -8,10 +8,11 @@ import {
   PRETTIER_IGNORE_FILE,
 } from '../../../utils/config-files.utils';
 import checkPrettierConfigGenerator from './generator';
+import {PackageJson} from "../../../types/package-json.types";
 
 jest
   .spyOn(configUtils, 'getMonorepoPackageJson')
-  .mockImplementation(() => Promise.resolve(MONOREPO_PACKAGE_JSON));
+  .mockImplementation(() => Promise.resolve(MONOREPO_PACKAGE_JSON as PackageJson));
 
 describe('Check-prettier-config generator test set', () => {
   let tree: Tree;

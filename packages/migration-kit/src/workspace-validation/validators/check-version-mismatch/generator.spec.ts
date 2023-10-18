@@ -5,8 +5,9 @@ import { MONOREPO_PACKAGE_JSON } from '../../../../fixtures/package-json.fixture
 import { DataLog } from '../../../types/validation.types';
 import * as configUtils from '../../../utils/config-files.utils';
 import { checkVersionMismatchGenerator } from './generator';
+import {PackageJson} from "../../../types/package-json.types";
 
-jest.spyOn(configUtils, 'getMonorepoPackageJson').mockImplementation(() => Promise.resolve(MONOREPO_PACKAGE_JSON));
+jest.spyOn(configUtils, 'getMonorepoPackageJson').mockImplementation(() => Promise.resolve(MONOREPO_PACKAGE_JSON as PackageJson));
 
 describe('Check-version-mismatch generator test set', () => {
     let tree: Tree;

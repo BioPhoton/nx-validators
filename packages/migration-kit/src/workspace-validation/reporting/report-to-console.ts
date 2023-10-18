@@ -26,7 +26,7 @@ type LogConfig = {
     icon?: string;
 };
 
-const reportLog = (message: string, { messageColor, label, labelTextColor, labelBackgroundColor, icon }: LogConfig, indentation: string = '') => {
+const reportLog = (message: string, { messageColor, label, labelTextColor, labelBackgroundColor, icon }: LogConfig, indentation = '') => {
     console.log(indentation, labelTextColor || '' + labelBackgroundColor, icon, label, DEFAULT_COLOR + messageColor, message, DEFAULT_COLOR);
 };
 
