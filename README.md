@@ -12,6 +12,31 @@ nx g @nx-validators/migration-kit:validate-workspace
 
 ![validation-process.png](packages/migration-kit/docs/images/validation-process.png)
 
+```mermaid
+flowchart TB
+
+A[1. Validation] --> A1[Prompt: Run All?]
+A1 -->|yes| A2[Select All]
+A1 -->|no| A3[Prompt: Select Validations]
+A3 --> A4[Run Selected Validations]
+A2 --> A4
+A4 --> A5[Run Validators]
+
+B[2. Result] --> B1[Create a structure based on validations]
+B1 --> B2[For each validator]
+B2 --> B3[no-run]
+B2 --> B4[success]
+B2 --> B5[failed/error]
+
+C[3. Report] --> C1[Generate report based on result]
+C1 --> C2[json]
+C1 --> C3[console]
+
+D[4. Solution] --> D1[For each failed validator]
+D1 --> D2[provide link to documentation]
+D2 --> D3[manual Fix]
+D2 -->|optional| D4[automatic Fix by using migrations]
+```
 ### 1) Validation Phase
 
 **The first phase** is responsible for running all generators that verify if the workspace adheres to the rules and conventions specified in the **Internal Nx Framework**.
