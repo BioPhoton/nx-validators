@@ -19,7 +19,7 @@ describe(useNxCloud, () => {
         tree.write('package.json', `{ "devDependencies": {} }`);
         tree.delete('nx.json');
         const data = await useNxCloud(tree);
-        expect(data).toContainEqual({ expected: 'The configuration file nx.json exists.', status: 'failed' });
+        expect(data).toContainEqual({ expected: 'The path to "nx.json" file or folder exists.', status: 'failed' });
     });
 
     it("should fail if the default task runner isn't nx-cloud", async () => {

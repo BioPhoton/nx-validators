@@ -19,10 +19,10 @@ export const hasNotDependencyInstalled = (dependencyPattern: string, tree: Tree,
     return !hasDependency;
 };
 
-export const isFileExist = (file: string, tree: Tree, data: DataLog[]): boolean => {
-    const exist = tree.exists(file);
+export const isPathExist = (path: string, tree: Tree, data: DataLog[]): boolean => {
+    const exist = tree.exists(path);
 
-    data.push({ expected: `The configuration file ${file} exists.`, status: exist ? 'success' : 'failed' });
+    data.push({ expected: `The path to "${path}" file or folder exists.`, status: exist ? 'success' : 'failed' });
 
     return exist;
 };

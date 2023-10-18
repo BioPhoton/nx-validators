@@ -2,7 +2,7 @@ import { Tree, getProjects, joinPathFragments, readJson } from '@nx/devkit';
 
 import { DataLog } from '../../../types/validation.types';
 import { TS_CONFIG_BASE_FILE, getLocalTsConfigBase } from '../../../utils/config-files.utils';
-import { isFileExist } from '../../../utils/validators.utils';
+import { isPathExist } from '../../../utils/validators.utils';
 
 export async function checkTsConfigPathsGenerator(tree: Tree): Promise<DataLog[]> {
     const data: DataLog[] = [];
@@ -48,7 +48,7 @@ function checkProjectTsConfigPaths(tree: Tree): DataLog[] {
 function checkTsConfigBasePaths(tree: Tree): DataLog[] {
     const data: DataLog[] = [];
 
-    if (isFileExist(TS_CONFIG_BASE_FILE, tree, data)) {
+    if (isPathExist(TS_CONFIG_BASE_FILE, tree, data)) {
         const includesWildcard = (path: string): boolean => path.includes('/*');
         const localTsConfigBase = getLocalTsConfigBase(tree);
         const paths = (localTsConfigBase?.compilerOptions?.paths as Record<string, string[]>) ?? {};
