@@ -92,6 +92,10 @@ end
 2.2. Point to the target package of validators `M`  
 3. Add the rules from `my-repo-rules` maintained in `M` to your `workspace-validations.config.ts` in `R`
 
+
+--- 
+
+
 ## Potential Improvements
 
 - The manual configuration of the validators could be automated through a generator e.g. `nx g workspace-validation:scann-validators --target=./my/validators`.  
