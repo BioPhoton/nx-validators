@@ -105,3 +105,49 @@ end
 ### Validators
 - README.md
   - The diagrams, as far as I can see could be mermaid. At lease in the example validators for scaffolding.
+ 
+## Code snippets useful for refectoring
+- For loading the `` we can look at the following snippets  
+```typescript
+export async function importEsmModule<T = unknown>(
+  options: Options,
+  parse?: (d: unknown) => T,
+) {
+  parse = parse || (v => v as T);
+  options = {
+    format: 'esm',
+    ...options,
+  };
+
+  const { mod } = await bundleRequire(options);
+  // @TODO consider handling undefined exports
+  return parse(mod.default || mod);
+}
+```  
+
+```typescript
+import { stat } from 'fs/promises';
+import { CoreConfig, coreConfigSchema } from '@workspace-validation/models';
+import { importEsmModule } from '@code-pushup/utils';
+
+export class ConfigPathError extends Error {
+  constructor(configPath: string) {
+    super(`Config path ${configPath} is not a file.`);
+  }
+}
+
+export async function readCodePushupConfig(filepath: string) {
+  const isFile = (await stat(filepath)).isFile();
+
+  if (!isFile) {
+    throw new ConfigPathError(filepath);
+  }
+
+  return importEsmModule<CoreConfig>(
+    {
+      filepath,
+    },
+    coreConfigSchema.parse,
+  );
+}
+```  
