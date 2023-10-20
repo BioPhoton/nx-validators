@@ -1,5 +1,31 @@
 # Package `workspace-validation` (or short `wv`)
 
+## Package Structure
+
+The main package is a Nx plugin and a set of confugurable audits 
+
+The project should countain:
+- utils - shared logic
+- models - types, parsing
+- wv-nx-plugin - the main package as Nx generator
+
+```mermaid
+flowchart LR;
+  
+subgraph workspace-validation repository
+utils-->models;
+wv-nx-plugin-->models;
+wv-nx-plugin-->utils;
+end
+
+subgraph integrators repository
+third-party-audits-->models;
+third-party-audits-->utils;
+github-action-->wv-nx-plugin;
+end
+```
+
+
 ## Target Audience/Main Usage
 
 **There are 2 target groups:**
@@ -60,32 +86,7 @@ end
 - The manual configuration of the validators could be automated through a generator e.g. `nx g workspace-validation:scann-validators --target=./my/validators`.  
   This could crawl the target folder and build the validator config.  
 - The manual setup of a project in `R` that hosts the `workspace-validations.config.ts` and publishes a NPM package could be automated or supported.
-
-## Package Structure
-
-The main package is a Nx plugin and a set of confugurable audits 
-
-The project should countain:
-- utils - shared logic
-- models - types, parsing
-- nx-plugin - the main package as Nx generator
-
-```mermaid
-flowchart LR;
-  
-subgraph workspace-validation repository
-utils-->models;
-wv-nx-plugin-->models;
-wv-nx-plugin-->utils;
-end
-
-subgraph integrators repository
-third-party-audits-->models;
-third-party-audits-->utils;
-github-action-->wv-nx-plugin;
-end
-```
-
+ 
 ### Validators
 - README.md
   - The diagrams, as far as I can see could be mermaid. At lease in the example validators for scaffolding.
