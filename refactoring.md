@@ -8,7 +8,7 @@
 
 ### Setup for `I`
 
-**Default Setup i `M`:**  
+**Default Setup in `M`:**  
 1. Install the `workspace-validation` package from NPM in `M`.  
    The package including all public validators
 2. Set up a `workspace-validations.config.ts` and add the general rules from `wv`
