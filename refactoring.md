@@ -9,18 +9,18 @@
 ### Setup for `I`
 
 **Default Setup in `M`:**  
-1. Install the `workspace-validation` package from NPM in `M`.  
+1. Install the `wv` package from NPM in `M`.  
    The package including all public validators
-2. Set up a `workspace-validations.config.ts` and add the general rules from `wv`
-3. Run  `npx workspace-validation validate`  
-3.1. All validations mentioned in `workspace-validations.config.ts` are executed   
+2. Set up a `wv.config.ts` and add the general rules from `wv`
+3. Run  `npx wv validate`  
+3.1. All validations mentioned in `wv.config.ts` are executed   
 3.2. The defined `report.[ext]` files are generated / printed to console 
 3.3. Optionally, he generated report data are sent to the dashboard
 
 **Custom Rules in `M`:**  
 1. Create a generator for the `validation` and optional `fix` code
-2. Add the custom rule name to the `workspace-validations.config.ts`
-3. The next run of the `workspace-validation` package will include the custom rule
+2. Add the custom rule name to the `wv.config.ts`
+3. The next run of the `wv` package will include the custom rule
 
 ### Setup for `II`
 
@@ -85,3 +85,7 @@ third-party-audits-->utils;
 github-action-->wv-nx-plugin;
 end
 ```
+
+### Validators
+- README.md
+  - The diagrams, as far as I can see could be mermaid. At lease in the example validators
