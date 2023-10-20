@@ -88,4 +88,4 @@ end
 
 ### Validators
 - README.md
-  - The diagrams, as far as I can see could be mermaid. At lease in the example validators
+  - The diagrams, as far as I can see could be mermaid. At lease in the example validators for scaffolding.
