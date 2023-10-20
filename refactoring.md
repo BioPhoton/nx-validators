@@ -36,9 +36,9 @@
 
 **Configure Target `R`:**
 2. Install the custom package e.g. `my-repo-rules` in `R`
-3. Configurations
-3.1. Point to the target repository `M`
-3.2. Point to the target package of validators `M`
+3. Configurations  
+3.1. Point to the target repository `M`  
+3.2. Point to the target package of validators `M`  
 4. Add the rules from `my-repo-rules` maintained in `M` to your `workspace-validations.config.ts` in `R`
 
 ## Potential Improvements
