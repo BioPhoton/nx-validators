@@ -8,7 +8,7 @@
 
 ### Setup for `I`
 
-**Default Setup:**  
+**Default Setup i `M`:**  
 1. Install the `workspace-validation` package from NPM in `M`.  
    The package including all public validators
 2. Set up a `workspace-validations.config.ts` and add the general rules from `wv`
@@ -17,22 +17,24 @@
 3.2. The defined `report.[ext]` files are generated / printed to console 
 3.3. Optionally, he generated report data are sent to the dashboard
 
-**Custom Rules:**  
+**Custom Rules in `M`:**  
 1. Create a generator for the `validation` and optional `fix` code
 2. Add the custom rule name to the `workspace-validations.config.ts`
 3. The next run of the `workspace-validation` package will include the custom rule
 
 ### Setup for `II`
 
-**Default Setup:**
+**Default Setup in `R`:**
 - All steps form "Default Setup" and "Custom Rules" under "Setup for `I`"
 
-**Custom Rules:**
+**Custom Rules in `R`:**
 - This n/a as the custom rules will live in `M` and installed over NPM
 
-**Configure Target:**
+**Prepare `M`:**
 1. Publish your `workspace-validations.config.ts` from `M` as a NPM package e.g. `my-repo-rules`   
 1.1. Including the custom rules in the package and `workspace-validations.config.ts`
+
+**Configure Target `R`:**
 2. Install the custom package e.g. `my-repo-rules` in `R`
 3. Configurations
 3.1. Point to the target repository `M`
@@ -43,5 +45,5 @@
 
 - The manual configuration of the validators could be automated through a generator e.g. `nx g workspace-validation:scann-validators --target=./my/validators`.  
   This could crawl the target folder and build the validator config.  
-- The manual setup of a project in `B` that hosts the `workspace-validations.config.ts` and publishes a NPN package could be automated.
+- The manual setup of a project in `R` that hosts the `workspace-validations.config.ts` and publishes a NPN package could be automated or supported.
 
