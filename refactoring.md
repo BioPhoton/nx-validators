@@ -34,6 +34,17 @@ end
 
 ### Setup for `I`
 
+```mermaid
+flowchart TB;
+  
+subgraph main repository
+custom-wv-->models;
+custom-wv-->custom-rules;
+custom-rules-->utils;
+wv-nx-plugin-->custom-wv;
+end
+```
+
 **Default Setup in `M`:**  
 1. Install the `wv` package from NPM in `M`.  
    The package including all public validators
