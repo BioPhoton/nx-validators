@@ -106,8 +106,8 @@ end
 - README.md
   - The diagrams, as far as I can see could be mermaid. At lease in the example validators for scaffolding.
  
-## Code snippets useful for refectoring
-- For loading the `` we can look at the following snippets  
+## Code snippets useful for refactoring
+- For loading the `wv.config.json` we can look at the following snippets  
 ```typescript
 export async function importEsmModule<T = unknown>(
   options: Options,
@@ -150,4 +150,12 @@ export async function readCodePushupConfig(filepath: string) {
     coreConfigSchema.parse,
   );
 }
-```  
+```
+
+
+## Minimal adoption to open source
+
+- config file option
+- validator extraction
+
+
