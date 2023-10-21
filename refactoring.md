@@ -152,10 +152,11 @@ export async function readCodePushupConfig(filepath: string) {
 }
 ```
 
+## Valuable Improvements
+- model lib for types and perser (file/console entry boundaries)
 
 ## Minimal adoption to open source
 
 - config file option
 - validator extraction
-
 
