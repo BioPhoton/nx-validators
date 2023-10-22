@@ -7,6 +7,7 @@ The main package is a Nx plugin and a set of confugurable audits
 The project should countain:
 - utils - shared logic
 - models - types, parsing
+- validators - base validators maintained by the reporitory
 - wv-nx-plugin - the main package as Nx generator
 
 ```mermaid
@@ -161,4 +162,3 @@ export async function readCodePushupConfig(filepath: string) {
   - main repository - `string`
   - validators root - `array`
 - validator extraction
-
