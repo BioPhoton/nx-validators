@@ -158,5 +158,7 @@ export async function readCodePushupConfig(filepath: string) {
 ## Minimal adoption to open source
 
 - config file option
+  - main repository - `string`
+  - validators root - `array`
 - validator extraction
 
