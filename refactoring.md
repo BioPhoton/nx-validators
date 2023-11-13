@@ -155,6 +155,7 @@ export async function readCodePushupConfig(filepath: string) {
 
 ## Valuable Improvements
 - model lib for types and perser (file/console entry boundaries)
+- generic client for internal setup
 
 ## Minimal adoption to open source
 
