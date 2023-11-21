@@ -1,8 +1,0 @@
-{
-    "$schema": "http://json-schema.org/schema",
-    "$id": "CheckRootTsConfigBase",
-    "title": "Script to check wether tsconfig.base.json is present and correctly configured",
-    "type": "object",
-    "properties": {},
-    "required": []
-}

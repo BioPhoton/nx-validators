@@ -1,8 +1,0 @@
-{
-    "$schema": "http://json-schema.org/schema",
-    "$id": "CheckVersionMismatch",
-    "title": "Script to compare NPM dependencies versions of target project and vanilla project",
-    "type": "object",
-    "properties": {},
-    "required": []
-}
