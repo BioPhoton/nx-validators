@@ -39,3 +39,6 @@ testem.log
 Thumbs.db
 
 validate-workspace-report.*.json
+
+# Environment Variables
+.env

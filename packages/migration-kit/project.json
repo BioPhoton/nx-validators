@@ -1,0 +1,73 @@
+{
+    "name": "migration-kit",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/migration-kit/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/build/packages/migration-kit",
+                "main": "packages/migration-kit/src/index.ts",
+                "tsConfig": "packages/migration-kit/tsconfig.lib.json",
+                "external": ["frontend-dev-kit"],
+                "assets": [
+                    "packages/migration-kit/docs/**/*",
+                    "packages/migration-kit/**/*.md",
+                    "packages/migration-kit/**/*/schema.*",
+                    {
+                        "input": "./packages/migration-kit/src",
+                        "glob": "**/!(*.ts)",
+                        "output": "./src"
+                    },
+                    {
+                        "input": "./packages/migration-kit/src",
+                        "glob": "**/*.d.ts",
+                        "output": "./src"
+                    },
+                    {
+                        "input": "./packages/migration-kit",
+                        "glob": "generators.json",
+                        "output": "."
+                    },
+                    {
+                        "input": "./packages/migration-kit",
+                        "glob": "executors.json",
+                        "output": "."
+                    },
+                    {
+                        "input": "./packages/migration-kit",
+                        "glob": "migrations.json",
+                        "output": "."
+                    }
+                ]
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{workspaceRoot}/dist/lint/{projectRoot}"],
+            "options": {
+                "lintFilePatterns": ["packages/migration-kit/**/*.ts", "packages/migration-kit/**/*.json"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/dist/test/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/migration-kit/jest.config.ts"
+            }
+        },
+        "publish": {
+            "executor": "@frontend/nx-plugin:publish",
+            "configurations": {
+                "artifactory": {},
+                "verdaccio": {
+                    "dest": "http://localhost:4873/"
+                }
+            },
+            "defaultConfiguration": "verdaccio"
+        }
+    },
+    "tags": ["type:kit", "scope:shared"]
+}

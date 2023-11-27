@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "PrettierConfigMismatch",
+    "title": "Script to compare Prettier configs of target project and monorepo project",
+    "type": "object",
+    "properties": {},
+    "required": []
+}

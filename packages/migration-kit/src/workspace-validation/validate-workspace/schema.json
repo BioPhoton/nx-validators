@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "ValidateWorkspace",
+    "title": "",
+    "type": "object",
+    "properties": {
+        "reports": {
+            "type": "array",
+            "default": ["console", "json"],
+            "items": {
+                "type": "string",
+                "enum": ["json", "console"]
+            }
+        },
+        "runAll": {
+            "type": "boolean",
+            "default": true,
+            "x-prompt": {
+                "message": "Do you want to run all the generators?",
+                "type": "confirm"
+            }
+        },
+        "reportsOutput": {
+            "type": "string",
+            "default": "."
+        },
+        "showPassed": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "required": ["runAll"]
+}
