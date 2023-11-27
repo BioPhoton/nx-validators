@@ -1,19 +1,19 @@
-# frontend-dev-kit
+# dev-kit
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Building
 
-Run `nx build frontend-dev-kit` to build the library.
+Run `nx build dev-kit` to build the library.
 
 ## Running unit tests
 
-Run `nx test frontend-dev-kit` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test dev-kit` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Linting Rules
 
 ```
-nx lint frontend-dev-kit
+nx lint dev-kit
 ```
 
 ## Release

@@ -1,19 +1,19 @@
-# frontend-migration-kit
+# migration-kit
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Building
 
-Run `nx build frontend-migration-kit` to build the library.
+Run `nx build migration-kit` to build the library.
 
 ## Running unit tests
 
-Run `nx test frontend-migration-kit` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test migration-kit` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Linting Rules
 
 ```
-nx lint frontend-migration-kit
+nx lint migration-kit
 ```
 
 ## Release

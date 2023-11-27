@@ -11,7 +11,7 @@
                 "outputPath": "dist/build/packages/migration-kit",
                 "main": "packages/migration-kit/src/index.ts",
                 "tsConfig": "packages/migration-kit/tsconfig.lib.json",
-                "external": ["frontend-dev-kit"],
+                "external": ["dev-kit"],
                 "assets": [
                     "packages/migration-kit/docs/**/*",
                     "packages/migration-kit/**/*.md",
