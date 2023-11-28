@@ -42,7 +42,7 @@ const createValidationResult = (
     };
 };
 
-const resultStatusPriorityOrder: ResultStatus[] = ['skip', 'success', 'failed'];
+const resultStatusPriorityOrder: ResultStatus[] = ['skip', 'info', 'success', 'failed'];
 const updateStatus = (fromStatus: ResultStatus, validatorStatusToApply: ResultStatus): ResultStatus =>
     resultStatusPriorityOrder.indexOf(validatorStatusToApply) > resultStatusPriorityOrder.indexOf(fromStatus) ? validatorStatusToApply : fromStatus;
 
@@ -51,6 +51,10 @@ const updateTotal = (fromTotal: TotalStatus, validatorStatusToApply: ResultStatu
         ...fromTotal,
         skip: fromTotal.skip - 1,
     };
+
+    if (validatorStatusToApply === 'info') {
+        return newTotal;
+    }
 
     newTotal[validatorStatusToApply] = fromTotal[validatorStatusToApply] + 1;
 

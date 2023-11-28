@@ -1,0 +1,8 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "ProjectConvention",
+    "title": "Script to validate project convention (name and path)",
+    "type": "object",
+    "properties": {},
+    "required": []
+}

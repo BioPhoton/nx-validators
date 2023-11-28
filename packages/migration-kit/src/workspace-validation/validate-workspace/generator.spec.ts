@@ -42,6 +42,8 @@ jest.mock('./workspace-validations', () => ({
     },
 }));
 
+const ORIGINAL_ENV = process.env;
+
 describe('Validate Workspace Generator', () => {
     let tree: Tree;
 
@@ -51,7 +53,16 @@ describe('Validate Workspace Generator', () => {
     beforeEach(() => {
         tree = createTreeWithEmptyWorkspace();
         jest.clearAllMocks();
+        process.env = {
+            ...ORIGINAL_ENV,
+            GITLAB_PRIVATE_TOKEN: 'mock-gitlab-private-token',
+        };
     });
+
+    afterEach(() => {
+        process.env = ORIGINAL_ENV;
+    });
+
     describe('Test Validation Filter', () => {
         const validationOne = {
             name: 'Validation One',
@@ -235,7 +246,7 @@ describe('Validate Workspace Generator', () => {
             });
 
             expect(updateValidatorResultSpy).toHaveBeenCalledTimes(1);
-            expect(report).toHaveBeenCalledWith(['json'], expect.any(Object), '.');
+            expect(report).toHaveBeenCalledWith(['json'], expect.any(Object), true, '.', false);
         });
     });
 

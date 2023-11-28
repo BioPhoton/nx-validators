@@ -4,11 +4,11 @@ This library was generated with [Nx](https://nx.dev).
 
 ## Building
 
-Run `nx build dev-kit` to build the library.
+Run `nx build migration-kit` to build the library.
 
 ## Running unit tests
 
-Run `nx test dev-kit` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test migration-kit` to execute the unit tests via [Jest](https://jestjs.io).
 
 ## Linting Rules
 
@@ -16,16 +16,6 @@ Run `nx test dev-kit` to execute the unit tests via [Jest](https://jestjs.io).
 nx lint migration-kit
 ```
 
-## Publishing
+## Release
 
-For local development (using Verdaccio):
-
-```
-nx publish migration-kit -c verdaccio
-```
-
-To the private registry:
-
-```
-nx publish migration-kit -c artifactory --ver [version] --tag [latest]
-```
+The publishing is part of the frontend-kits release process on the CI:

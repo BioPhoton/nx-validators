@@ -6,7 +6,7 @@
     "properties": {
         "reports": {
             "type": "array",
-            "default": ["json", "console"],
+            "default": ["console", "json"],
             "items": {
                 "type": "string",
                 "enum": ["json", "console"]
@@ -23,6 +23,10 @@
         "reportsOutput": {
             "type": "string",
             "default": "."
+        },
+        "showPassed": {
+            "type": "boolean",
+            "default": false
         }
     },
     "required": ["runAll"]

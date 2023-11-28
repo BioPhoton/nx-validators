@@ -1,4 +1,4 @@
-import { PackageJson } from '@frontend/dev-kit';
+import { PackageJson } from '@nx-validators/dev-kit';
 
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import * as vanillaPackageJson from '../../../package.json';

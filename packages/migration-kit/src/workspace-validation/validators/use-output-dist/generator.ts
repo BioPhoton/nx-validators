@@ -9,12 +9,10 @@ export async function useOutputDistGenerator(): Promise<DataLog[]> {
         Object.keys(config.targets || {}).forEach((target) => {
             const outputs = getOutputsForTargetAndConfiguration(
                 {
-                    target: {
-                        project,
-                        target,
-                    },
-                    overrides: {},
+                    project,
+                    target,
                 },
+                {},
                 {
                     type: config.projectType === 'application' ? 'app' : 'lib',
                     name: project,
@@ -28,7 +26,8 @@ export async function useOutputDistGenerator(): Promise<DataLog[]> {
                 const expectedOutputPath = `dist/${target}/${config.root}`;
                 data.push({
                     expected: `The "outputs" property of the "${target}" target of "${project}" contains path to "${expectedOutputPath}".`,
-                    status: outputs.includes(expectedOutputPath) ? 'success' : 'failed',
+                    /* Note: output containing "generated" used by the design-system is excluded from the convention.  */
+                    status: outputs.includes(expectedOutputPath) || outputs.every((output) => output.includes('generated')) ? 'success' : 'failed',
                 });
             }
         });

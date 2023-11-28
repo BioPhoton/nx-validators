@@ -35,11 +35,6 @@
             "schema": "./src/workspace-validation/validators/check-tsconfig-paths/schema.json",
             "description": "Check if tsconfig paths are correctly configured"
         },
-        "check-webpack-config": {
-            "factory": "./src/workspace-validation/validators/check-webpack-config/generator",
-            "schema": "./src/workspace-validation/validators/check-webpack-config/schema.json",
-            "description": "Check if Angular apps are using custom shared webpack configuration"
-        },
         "validate-workspace": {
             "factory": "./src/workspace-validation/validate-workspace/generator",
             "schema": "./src/workspace-validation/validate-workspace/schema.json",
@@ -94,6 +89,41 @@
             "factory": "./src/workspace-validation/validators/check-yarn-config/generator",
             "schema": "./src/workspace-validation/validators/check-yarn-config/schema.json",
             "description": "check-yarn-config generator"
+        },
+        "check-project-convention": {
+            "factory": "./src/workspace-validation/validators/check-project-convention/generator",
+            "schema": "./src/workspace-validation/validators/check-project-convention/schema.json",
+            "description": "check-project-convention generator"
+        },
+        "use-latest-monorepo-packages": {
+            "factory": "./src/workspace-validation/validators/use-latest-monorepo-packages/generator",
+            "schema": "./src/workspace-validation/validators/use-latest-monorepo-packages/schema.json",
+            "description": "use-latest-monorepo-packages generator"
+        },
+        "check-husky-config": {
+            "factory": "./src/workspace-validation/validators/check-husky-config/generator",
+            "schema": "./src/workspace-validation/validators/check-husky-config/schema.json",
+            "description": "check-husky-config generator"
+        },
+        "check-tags-convention": {
+            "factory": "./src/workspace-validation/validators/check-tags-convention/generator",
+            "schema": "./src/workspace-validation/validators/check-tags-convention/schema.json",
+            "description": "check-tags-convention generator"
+        },
+        "check-manual-steps": {
+            "factory": "./src/workspace-validation/validators/check-manual-steps/generator",
+            "schema": "./src/workspace-validation/validators/check-manual-steps/schema.json",
+            "description": "check-manual-steps generator"
+        },
+        "check-tsconfig-per-project": {
+            "factory": "./src/workspace-validation/validators/check-tsconfig-per-project/generator",
+            "schema": "./src/workspace-validation/validators/check-tsconfig-per-project/schema.json",
+            "description": "check-tsconfig-per-project generator"
+        },
+        "check-import-aliases": {
+            "factory": "./src/workspace-validation/validators/check-import-aliases/generator",
+            "schema": "./src/workspace-validation/validators/check-import-aliases/schema.json",
+            "description": "check-import-aliases generator"
         }
     }
 }

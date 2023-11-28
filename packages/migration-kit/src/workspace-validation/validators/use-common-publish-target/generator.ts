@@ -10,7 +10,7 @@ export async function useCommonPublishTargetGenerator(tree: Tree): Promise<DataL
         if (targetEntry) {
             data.push({
                 expected: `Publish target of ${projectName} project should use common publish executor.`,
-                status: targetEntry[1]?.executor === '@frontend/dev-kit:publish' ? 'success' : 'failed',
+                status: targetEntry[1]?.executor === '@frontend/nx-plugin:publish' ? 'success' : 'failed',
             });
         }
     });

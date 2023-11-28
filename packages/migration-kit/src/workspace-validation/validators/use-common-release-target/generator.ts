@@ -10,7 +10,7 @@ export async function useCommonReleaseTargetGenerator(tree: Tree): Promise<DataL
         if (targetEntry) {
             data.push({
                 expected: `Release target of ${projectName} project should use common release executor.`,
-                status: targetEntry[1]?.executor === '@frontend/dev-kit:release' ? 'success' : 'failed',
+                status: targetEntry[1]?.executor === '@frontend/nx-plugin:release' ? 'success' : 'failed',
             });
         }
     });

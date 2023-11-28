@@ -1,0 +1,55 @@
+{
+    "name": "dev-kit",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/dev-kit/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/build/packages/dev-kit",
+                "main": "packages/dev-kit/src/index.ts",
+                "tsConfig": "packages/dev-kit/tsconfig.lib.json",
+                "assets": [
+                    "packages/dev-kit/*.md",
+                    {
+                        "input": "./packages/dev-kit/src",
+                        "glob": "**/!(*.ts)",
+                        "output": "./src"
+                    },
+                    {
+                        "input": "./packages/dev-kit/src",
+                        "glob": "**/*.d.ts",
+                        "output": "./src"
+                    }
+                ]
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": ["{workspaceRoot}/dist/lint/{projectRoot}"],
+            "options": {
+                "lintFilePatterns": ["packages/dev-kit/**/*.ts", "packages/dev-kit/package.json"]
+            }
+        },
+        "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": ["{workspaceRoot}/dist/test/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/dev-kit/jest.config.ts"
+            }
+        },
+        "publish": {
+            "executor": "@frontend/nx-plugin:publish",
+            "configurations": {
+                "artifactory": {},
+                "verdaccio": {
+                    "dest": "http://localhost:4873/"
+                }
+            },
+            "defaultConfiguration": "verdaccio"
+        }
+    },
+    "tags": ["type:kit", "scope:shared"]
+}

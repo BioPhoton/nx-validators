@@ -1,0 +1,35 @@
+{
+    "extends": ["../../.eslintrc.json"],
+    "ignorePatterns": ["!**/*"],
+    "plugins": ["@nx"],
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "rules": {}
+        },
+        {
+            "files": ["*.ts", "*.tsx"],
+            "rules": {},
+            "parserOptions": {
+                "project": ["packages/dev-kit/tsconfig.*?.json"]
+            }
+        },
+        {
+            "files": ["*.js", "*.jsx"],
+            "rules": {}
+        },
+        {
+            "files": ["*.json"],
+            "parser": "jsonc-eslint-parser",
+            "rules": {
+                "@nx/nx-plugin-checks": "error",
+                "@nx/dependency-checks": [
+                    "error",
+                    {
+                        "ignoredDependencies": ["@trivago/prettier-plugin-sort-imports", "prettier"]
+                    }
+                ]
+            }
+        }
+    ]
+}

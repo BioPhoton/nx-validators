@@ -4,4 +4,5 @@ export interface ValidateWorkspaceGeneratorSchema {
     runAll: boolean;
     reports: ReportTypes;
     reportsOutput?: string;
+    showPassed?: boolean;
 }

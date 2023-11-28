@@ -265,3 +265,15 @@ plugins:
     spec: "@yarnpkg/plugin-interactive-tools"
 yarnPath: .yarn/releases/yarn-3.6.3.cjs
 `;
+
+export const MONOREPO_HUSKY_CONFIG_MOCK = `#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+yarn lint-staged --concurrent true --relative`;
+
+export const MONOREPO_LINT_STAGED_CONFIG_MOCK = `
+module.exports = {
+    ...require('./packages/dev-kit/src/lint-staged/index'),
+    '*.scss': \`stylelint --quiet\`,
+};
+`;

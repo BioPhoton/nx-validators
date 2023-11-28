@@ -74,7 +74,7 @@ describe('Check-prettier-config generator test set', () => {
             // EXPECT
             expect(data).toContainEqual({ expected: `The path to "${PRETTIER_CONFIG_FILE}" file or folder exists.`, status: 'success' });
 
-            expect(data).toContainEqual({ expected: 'Prettier Config is extending the shared config from @frontend/dev-kit', status: 'success' });
+            expect(data).toContainEqual({ expected: 'Prettier Config is extending the shared config from @nx-validators/dev-kit', status: 'success' });
         });
 
         it('should have a invalid prettier configuration', async () => {
@@ -92,7 +92,7 @@ describe('Check-prettier-config generator test set', () => {
             // EXPECT
             expect(data).toContainEqual({ expected: `The path to "${PRETTIER_CONFIG_FILE}" file or folder exists.`, status: 'success' });
 
-            expect(data).toContainEqual({ expected: 'Prettier Config is extending the shared config from @frontend/dev-kit', status: 'failed' });
+            expect(data).toContainEqual({ expected: 'Prettier Config is extending the shared config from @nx-validators/dev-kit', status: 'failed' });
         });
 
         it('should have a prettierignore configuration file', async () => {

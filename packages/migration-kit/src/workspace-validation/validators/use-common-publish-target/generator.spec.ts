@@ -36,7 +36,7 @@ describe('use-common-publish-target generator', () => {
                 name: 'vanilla',
                 targets: {
                     publish: {
-                        executor: '@frontend/dev-kit:publish',
+                        executor: '@frontend/nx-plugin:publish',
                     },
                 },
             }),

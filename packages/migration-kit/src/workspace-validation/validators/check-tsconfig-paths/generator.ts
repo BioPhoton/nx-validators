@@ -25,11 +25,6 @@ function checkProjectTsConfigPaths(tree: Tree): DataLog[] {
         ];
 
         for (const tsConfigPath of tsConfigPaths) {
-            // SKIP LOADERS PROJECT BECAUSE IT REQUIRES TO ACCESS TO FRONTEND
-            if (tsConfigPath.includes('loaders/tsconfig.lib.json')) {
-                continue;
-            }
-
             if (tree.exists(tsConfigPath)) {
                 const tsConfig = readJson(tree, tsConfigPath);
                 const paths = (tsConfig?.compilerOptions?.paths as Record<string, string[]>) ?? {};

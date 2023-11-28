@@ -2,7 +2,7 @@ import { Tree, createProjectGraphAsync, readProjectsConfigurationFromProjectGrap
 
 import { DataLog } from '../../../types/validation.types';
 
-const EXCLUDED_FOLDERS = [/node_modules/, /^[.]/, /dist/, /ThemesDist/, /ClientDist/, /gulp/, /tmp/];
+const EXCLUDED_FOLDERS = [/node_modules/, /^[.]/, /dist/, /ThemesDist/, /ClientDist/, /gulp/, /tmp/, /tools/];
 
 function searchTree(tree: Tree, projectRootPaths: string[], path: string = ''): DataLog[] {
     const data: DataLog[] = [];

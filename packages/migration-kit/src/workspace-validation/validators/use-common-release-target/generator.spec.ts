@@ -36,7 +36,7 @@ describe('use-common-release-target generator', () => {
                 name: 'dev-kit',
                 targets: {
                     'release-dev-kit': {
-                        executor: '@frontend/dev-kit:release',
+                        executor: '@frontend/nx-plugin:release',
                     },
                 },
             }),

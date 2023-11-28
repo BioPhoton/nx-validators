@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-validators/migration-kit": ["packages/migration-kit/src/index.ts"]
+      "@nx-validators/migration-kit": ["packages/migration-kit/src/index.ts"],
+      "@nx-validators/dev-kit": ["packages/dev-kit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

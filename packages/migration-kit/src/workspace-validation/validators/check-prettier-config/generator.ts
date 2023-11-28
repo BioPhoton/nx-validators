@@ -7,7 +7,7 @@ import { hasDependencyInstalled, isPathExist } from '../../../utils/validators.u
 const checkPrettierDevkitConfig = (tree: Tree): DataLog => {
     const prettierConfig = getLocalPrettierConfig(tree) ?? '';
     return {
-        expected: 'Prettier Config is extending the shared config from @frontend/dev-kit',
+        expected: 'Prettier Config is extending the shared config from @nx-validators/dev-kit',
         status: prettierConfig.includes('dev-kit/src/prettier/index') ? 'success' : 'failed',
     };
 };

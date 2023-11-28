@@ -3,7 +3,7 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 
 import useProjectJson from './generator';
 
-describe('Check-version-mismatch generator test set', () => {
+describe('Use-project-config generator test set', () => {
     let tree: Tree;
     beforeEach(() => {
         tree = createTreeWithEmptyWorkspace();

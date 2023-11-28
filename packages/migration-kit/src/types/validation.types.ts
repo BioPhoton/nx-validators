@@ -10,12 +10,18 @@ export interface Validation {
     validatorIds: ValidatorId[];
 }
 
-export type ValidationId = 'use-nx-tooling' | 'use-quality-tooling' | 'use-workspace-layout' | 'normalize-typescript-config' | 'use-dev-kit';
+export type ValidationId =
+    | 'use-nx-tooling'
+    | 'use-quality-tooling'
+    | 'use-workspace-layout'
+    | 'normalize-typescript-config'
+    | 'use-dev-kit'
+    | 'check-manual-steps';
 export type WorkspaceValidation = Record<ValidationId, Validation>;
 
-export type ResultStatus = 'success' | 'failed' | 'skip';
+export type ResultStatus = 'success' | 'failed' | 'skip' | 'info';
 
-export type TotalStatus = Record<ResultStatus, number>;
+export type TotalStatus = Record<Exclude<ResultStatus, 'info'>, number>;
 
 export type DataLog = {
     expected: string;

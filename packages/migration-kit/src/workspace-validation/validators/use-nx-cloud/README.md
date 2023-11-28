@@ -22,8 +22,20 @@ This validator checks that the workspace is using Nx Cloud.
 }
 ```
 
-2. Then you can connect your workspace by using the command:
+2. Open a terminal in `Admin Mode` connect your workspace by using the command:
 
+Using Git Bash Terminal:
 ```shell
 NX_CLOUD_API="http://nxcloud.dev.env.works" npx nx connect
+```
+
+Using Powershell:
+```shell
+$Env:NX_CLOUD_API = 'http://nxcloud.dev.env.works'
+npx nx connect
+```
+
+Using Windows command:
+```shell
+set "NX_CLOUD_API="http://nxcloud.dev.env.works" && npx nx connect
 ```

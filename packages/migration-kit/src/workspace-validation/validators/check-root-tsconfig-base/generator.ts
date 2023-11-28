@@ -1,4 +1,4 @@
-import { BaseTsConfigJson } from '@frontend/dev-kit';
+import { BaseTsConfigJson } from '@nx-validators/dev-kit';
 import { Tree } from '@nx/devkit';
 import { addedDiff } from 'deep-object-diff';
 
